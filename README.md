@@ -1,2 +1,2 @@
-# Data-Mining-based-Fraud-Detection
+# Fraud-Detection
 This project is to employ data mining techniques to conduct fraud detection
