@@ -14,16 +14,16 @@ where each key in the dictionary is a person’s name and the value is a
 dictionary containing all the features of that person. Dictionary is stored as
 a pickle file, which is the format of the data source of this analysis. A
 summary of the dataset is as follows:
-1. Total number of people (data points) is 146.\
-2. For each person, there are 21 features available.\
-3. Total number of POI (person of interest) is 18.\
+1. Total number of people (data points) is 146.
+2. For each person, there are 21 features available.
+3. Total number of POI (person of interest) is 18.
 4. Total number of POI on the email list is 35.\
-Why the number in 3 and 4 is not identical?\
+Why the number in 3 and 4 is not identical?
 
 Questions to answer:\
 allocation across classes (POI/non-POI);\
 number of features used;\
-are there features with many missing values? etc.\
+are there features with many missing values? etc.
 
 ## Outliers investigation
 
