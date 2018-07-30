@@ -31,7 +31,7 @@ contains the names of all the features and their values for that person. The
 Dictionary is stored as a pickle file, which is the format of the data source
 for this project. A brief overview of the dataset is as follows:
 1. It includes the information of 146 people.
-2. Among them, there 18 POI (person of interest), are 128 non-POI.
+2. Among them, there 18 POI (person of interest) and 128 non-POI.
 3. For each person, there are 21 features and corresponding values recorded.
 
 ## Outliers investigation
