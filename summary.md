@@ -47,11 +47,22 @@ distinct observation! In fact, it is likely a spreadsheet quirk since the
 spreadsheet added up all the data points automatically as it was generated.
 
 After this removal, we look into the remaining data points again. In this case,
-points with salary larger than $1,000,000 or bonus more than $1,000,000 are
+points with salary larger than $1,000,000 or bonus more than $5,000,000 are
 considered as outliers. A vertical and a horizontal line are drawn,
 respectively, to assist the identification.
 
 ![](summary_files/outlier-fig2.png)
+
+Five points fall into this category in which either salary larger than
+$1,000,000 or bonus more than $5,000,000. In fact, it is quite possible that
+these five points are people of interest. Using a list comprehension, the names corresponding to the outliers are:
+1. John J Lavorato
+2. Kenneth L Lay
+3. Timothy N Belden
+4. Jeffrey K Skilling
+5. Mark A Frevert
+
+It turns out that Kenneth L Lay is the chairman and CEO, and Jeffrey Skilling is the president and COO. Both are definitely people of interest.
 
 ## Feature selection and optimization
 
