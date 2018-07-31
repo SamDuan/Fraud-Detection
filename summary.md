@@ -40,14 +40,18 @@ person in this dataset. From the scatter plot, we found that a person's salary
 is generally proportion to his/her bonus. However, a point at the top right
 corner appears to be unusually distant from the rest of the data.
 
+![](summary_files/outlier-fig1.png)
+
 Then with the use of list comprehension, "total" is identified to be this
 distinct observation! In fact, it is likely a spreadsheet quirk since the
 spreadsheet added up all the data points automatically as it was generated.
 
-After this removal, we look into the remaining data points again. At this time,
-points with salary larger than 1e6 or bonus more than 5e6 are considered as
-outliers. A vertical and a horizontal line are drawn, respectively, to assist
-us to identify them. 
+After this removal, we look into the remaining data points again. In this case,
+points with salary larger than $1,000,000 or bonus more than $1,000,000 are
+considered as outliers. A vertical and a horizontal line are drawn,
+respectively, to assist the identification.
+
+![](summary_files/outlier-fig2.png)
 
 ## Feature selection and optimization
 
