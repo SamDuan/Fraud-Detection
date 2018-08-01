@@ -9,8 +9,6 @@ from tester import dump_classifier_and_data
 
 ### Task 1: Select what features you'll use.
 
-# Lesson 12 - 7/26 (Thur)
-
 ### features_list is a list of strings, each of which is a feature name.
 ### The first feature must be "poi".
 
@@ -22,11 +20,7 @@ with open("final_project_dataset.pkl", "r") as data_file:
 
 ### Task 2: Remove outliers
 
-# Lesson 8 - 7/27 (Fri)
-
 ### Task 3: Create new feature(s)
-
-# Lesson 12 - 7/28 (Sat)
 
 ### Store to my_dataset for easy export below.
 my_dataset = data_dict
@@ -36,8 +30,6 @@ data = featureFormat(my_dataset, features_list, sort_keys = True)
 labels, features = targetFeatureSplit(data)
 
 ### Task 4: Try a varity of classifiers
-
-# Lesson 2, 3, 4, 5, 7, 9, 10, 11, 13 - 7/29 (Sun)
 
 ### Please name your classifier clf for easy export below.
 ### Note that if you want to do PCA or other multi-stage operations,
@@ -54,8 +46,6 @@ clf = GaussianNB()
 ### function. Because of the small size of the dataset, the script uses
 ### stratified shuffle split cross validation. For more info:
 ### http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.StratifiedShuffleSplit.html
-
-# Lesson 14, 15 - 7/30 (Mon)
 
 # Example starting point. Try investigating other evaluation techniques!
 from sklearn.cross_validation import train_test_split
