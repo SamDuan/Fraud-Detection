@@ -15,16 +15,16 @@ dictionary key is the person's name, and the value is another dictionary, which
 contains the names of all the features and their values for that person. The
  features in the data fall into three major types:
 
-1. financial features (14 in total): ['salary', 'deferral_payments', 'total_payments',
-'loan_advances', 'bonus', 'restricted_stock_deferred', 'deferred_income',
-'total_stock_value', 'expenses', 'exercised_stock_options', 'other',
-'long_term_incentive', 'restricted_stock', 'director_fees']
+1. financial features (14 in total): ['salary', 'deferral_payments',
+'total_payments', 'loan_advances', 'bonus', 'restricted_stock_deferred',
+'deferred_income', 'total_stock_value', 'expenses', 'exercised_stock_options',
+'other', 'long_term_incentive', 'restricted_stock', 'director_fees']
 (all units are in US dollars)
 
-2. email features (6 in total): ['to_messages', 'email_address', 'from_poi_to_this_person',
-'from_messages', 'from_this_person_to_poi', 'shared_receipt_with_poi'] (units
-  are generally number of emails messages; notable exception is ‘email_address’,
-   which is a text string)
+2. email features (6 in total): ['to_messages', 'email_address',
+'from_poi_to_this_person', 'from_messages', 'from_this_person_to_poi',
+'shared_receipt_with_poi'] (units   are generally number of emails messages;
+  notable exception is ‘email_address’, which is a text string)
 
 3. POI label (1 in total): [‘poi’] (boolean, represented as integer)
 
