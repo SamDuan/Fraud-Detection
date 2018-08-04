@@ -64,7 +64,9 @@ corresponding to the outliers are:
 5. Mark A Frevert
 
 It turns out that Kenneth L Lay is the chairman and CEO, and Jeffrey Skilling is
- the president and COO. Both are definitely people of interest.
+ the president and COO. Both are definitely people of interest, so they cannot
+ be removed. However, the other three people, i.e., John J Lavorato,
+ Timothy N Belden and Mark A Frevert, are removed from the dataset.
 
 ## Feature selection and optimization
 
