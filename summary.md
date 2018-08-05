@@ -8,6 +8,11 @@ resulting Federal investigation, a significant amount of typically confidential
  Employees who may have committed fraud (who are called persons of interest,
    POI, in the following) based on the public Enron financial and email dataset.
 
+More specifically, a dataset of persons and features associated with them is
+given, and then the goal is to build a classifier algorithm around it that can
+predict if individuals should be flagged as POIs or not. This is a dataset of
+146 points (before cleaning of outlier points) and 21 features.
+
 ## Data exploration
 The aggregated Enron email & financial dataset is stored in a dictionary,
 where each key-value pair in the dictionary corresponds to one person. The
@@ -32,7 +37,8 @@ Dictionary is stored as a pickle file, which is the format of the data source
 for this project. A brief overview of the dataset is as follows:
 1. It includes the information of 146 people.
 2. Among them, there 18 POI (person of interest) and 128 non-POI.
-3. For each person, there are 21 features and corresponding values recorded.
+3. For each person, there are total 21 features and corresponding values
+recorded.
 
 ## Outliers investigation
 To identify the outliers, we start looking at the salary and bonus of each
