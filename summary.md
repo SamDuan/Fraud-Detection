@@ -97,7 +97,12 @@ scores:
 ![](summary_files/score-fig2.png)
 
 Here it can be noted that:
+1. The scale is ten to the power of 1 (it was 8 previously).
+2. The financial features remain at the top but the email features are
+comparable with some of the financial features now.
 
+So it is quite critical to do the scaling to the dataset before loading them
+into the classifiers.
 
 ## Picking and tuning algorithms
 
