@@ -82,9 +82,22 @@ features, SelectKBest (a univariate feature selection) is used. Note that
 not used either since this feature is not clearly defined. In addition,
 MinMaxScaler is deployed to scale each feature to the range between 0 and 1. Out
 of curiosity, I firstly run SelectBest on the unscaled features and the scores
-are plotted on a bar chart shown below,
+are plotted on a bar chart shown below:
 
 ![](summary_files/score-fig1.png)
+
+Couple things observed:
+1. The scale is ten to the power of 8.
+2. The financial features are top ranking while the score for email features are
+too small that they cannot be seen on this scale.
+
+Then I run SelectBest on the scaled features and the bar chart below shows their
+scores:
+
+![](summary_files/score-fig2.png)
+
+Here it can be noted that:
+
 
 ## Picking and tuning algorithms
 
