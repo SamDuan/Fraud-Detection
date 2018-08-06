@@ -96,7 +96,7 @@ scores:
 
 ![](summary_files/score-fig2.png)
 
-Here it can be noted that:
+It can be noted that:
 1. The scale is ten to the power of 1 (it was 8 previously).
 2. The financial features remain at the top but the email features are
 comparable with some of the financial features now.
