@@ -41,8 +41,8 @@ for this project. A brief overview of the dataset is as follows:
 recorded.
 
 ## Outliers investigation
-To identify the outliers, we start looking at the salary and bonus of each
-person in this dataset. From the scatter plot, we found that a person's salary
+To identify the outliers, I start looking at the salary and bonus of each
+person in this dataset. From the scatter plot, I found that a person's salary
 is generally proportion to his/her bonus. However, a point at the top right
 corner appears to be unusually distant from the rest of the data.
 
@@ -52,7 +52,7 @@ Then with the use of list comprehension, "total" is identified to be this
 distinct observation! In fact, it is likely a spreadsheet quirk since the
 spreadsheet added up all the data points automatically as it was generated.
 
-After this removal, we look into the remaining data points again. In this case,
+After this removal, I look into the remaining data points again. In this case,
 points with salary larger than $1,000,000 or bonus more than $5,000,000 are
 considered as outliers. A vertical and a horizontal line are drawn,
 respectively, to assist the identification.
@@ -75,6 +75,16 @@ It turns out that Kenneth L Lay is the chairman and CEO, and Jeffrey Skilling is
  Timothy N Belden and Mark A Frevert, are removed from the dataset.
 
 ## Feature selection and optimization
+
+To figure the importance of each feature which is either financial or email
+features, SelectKBest (a univariate feature selection) is used. Note that
+'email_address' is not included since it contains text strings, and 'other' is
+not used either since this feature is not clearly defined. In addition,
+MinMaxScaler is deployed to scale each feature to the range between 0 and 1. Out
+of curiosity, I firstly run SelectBest on the unscaled features and the scores
+are plotted on a bar chart shown below,
+
+![](summary_files/score-fig1.png)
 
 ## Picking and tuning algorithms
 
