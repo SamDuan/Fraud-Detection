@@ -87,6 +87,10 @@ MinMaxScaler is deployed to scale each feature to the range between 0 and 1. Out
 of curiosity, I firstly run SelectBest on the unscaled features and the scores
 are plotted on a bar chart shown below:
 
+<p align="center">
+<img src="summary_files/score-fig1.png">
+</p>
+
 ![](summary_files/score-fig1.png)
 
 Couple things observed:
