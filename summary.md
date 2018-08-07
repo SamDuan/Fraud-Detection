@@ -62,8 +62,8 @@ respectively, to assist the identification.
 
 Five points fall into this category in which either salary larger than
 $1,000,000 or bonus more than $5,000,000. Based on the coloration, three of
-these five points are people of interest. Using a list comprehension, the names
-corresponding to the outliers are:
+these five points are people of interest (red dots). Using a list comprehension,
+ the names corresponding to the outliers are:
 1. John J Lavorato
 2. Kenneth L Lay
 3. Timothy N Belden
