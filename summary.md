@@ -44,7 +44,8 @@ recorded.
 To identify the outliers, I start looking at the salary and bonus of each
 person in this dataset. From the scatter plot, I found that a person's salary
 is generally proportion to his/her bonus. However, a point at the top right
-corner appears to be unusually distant from the rest of the data.
+corner appears to be unusually distant from the rest of the data. In addition,
+red dots are chosen for POIs and blue dots, non-POIs.
 
 ![](summary_files/outlier-fig1.png)
 
