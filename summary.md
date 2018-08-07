@@ -78,6 +78,12 @@ It turns out that Kenneth L Lay is the former chairman and CEO, Jeffrey Skilling
  accuracy later.
 
 ## Feature selection and optimization
+As POIs, they might have particularly strong email connections between each
+other. In other words, they send each other emails at a higher rate than people
+in the population at large who send emails to POIs. Two new features are
+therefore defined to measure the strength of the email connections.
+
+![equation](http://www.sciweavers.org/tex2img.php?eq=1%2Bsin%28mc%5E2%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 
 To figure the importance of each feature which is either financial or email
 features, SelectKBest (a univariate feature selection) is used. Note that
