@@ -87,7 +87,7 @@ therefore defined to measure the strength of the email connections, which are:
 person / # emails to this person
 
 -Percentage of emails from this person to POIs (%) = # emails from this person
-to POI / # emails in from this person
+to POI / # emails from this person
 
 They are plotted in the figure below and POIs are in red dots while non-POIs are
 in blue dots.
