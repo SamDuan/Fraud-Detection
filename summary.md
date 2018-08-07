@@ -81,9 +81,13 @@ It turns out that Kenneth L Lay is the former chairman and CEO, Jeffrey Skilling
 As POIs, they might have particularly strong email connections between each
 other. In other words, they send each other emails at a higher rate than people
 in the population at large who send emails to POIs. Two new features are
-therefore defined to measure the strength of the email connections.
+therefore defined to measure the strength of the email connections, which are:
 
-![equation](http://www.sciweavers.org/tex2img.php?eq=fraction%20of%20emails%20from%20POIs%20to%20this%20person%20%3D%20%5Cfrac%7Bfrom%20poi%7D%7Bto%20all%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+1. Percentage of emails from POIs to this person (%) = # emails from POI to this
+person / # emails to this person
+
+2. Percentage of emails from this person to POIs (%) = # emails from this person
+to POI / # emails in from this person
 
 To figure the importance of each feature which is either financial or email
 features, SelectKBest (a univariate feature selection) is used. Note that
