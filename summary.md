@@ -43,9 +43,9 @@ recorded.
 ## Outliers investigation
 To identify the outliers, I start looking at the salary and bonus of each
 person in this dataset. From the scatter plot, I found that a person's salary
-is generally proportion to his/her bonus. However, a point at the top right
-corner appears to be unusually distant from the rest of the data. In addition,
-red dots are chosen for POIs and blue dots, non-POIs.
+is generally proportion to his/her bonus. In addition, red dots are chosen for
+POIs and blue dots, non-POIs. However, a non-POI point at the top right corner
+appears to be unusually distant from the rest of the data.
 
 ![](summary_files/outlier-fig1.png)
 
@@ -61,7 +61,7 @@ respectively, to assist the identification.
 ![](summary_files/outlier-fig2.png)
 
 Five points fall into this category in which either salary larger than
-$1,000,000 or bonus more than $5,000,000. In fact, it is quite possible that
+$1,000,000 or bonus more than $5,000,000. Based on the coloration, three of
 these five points are people of interest. Using a list comprehension, the names
 corresponding to the outliers are:
 1. John J Lavorato
@@ -70,10 +70,12 @@ corresponding to the outliers are:
 4. Jeffrey K Skilling
 5. Mark A Frevert
 
-It turns out that Kenneth L Lay is the chairman and CEO, and Jeffrey Skilling is
- the president and COO. Both are definitely people of interest, so they cannot
- be removed. However, the other three people, i.e., John J Lavorato,
- Timothy N Belden and Mark A Frevert, are removed from the dataset.
+It turns out that Kenneth L Lay is the former chairman and CEO, Jeffrey Skilling
+ is the former president and COO, and Timothy N Belden is the former head of
+ trading in Enron Energy Services. Three of them are definitely people of
+ interest. However, the other two people, i.e., John J Lavorato and Mark A
+ Frevert seem to be outliers and we may remove them to improve the modeling
+ accuracy later.
 
 ## Feature selection and optimization
 
