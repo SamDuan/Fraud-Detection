@@ -83,10 +83,10 @@ other. In other words, they send each other emails at a higher rate than people
 in the population at large who send emails to POIs. Two new features are
 therefore defined to measure the strength of the email connections, which are:
 
--Percentage of emails from POIs to this person (%) = # emails from POI to this
+● Percentage of emails from POIs to this person (%) = # emails from POI to this
 person / # emails to this person
 
--Percentage of emails from this person to POIs (%) = # emails from this person
+● Percentage of emails from this person to POIs (%) = # emails from this person
 to POI / # emails from this person
 
 They are plotted in the figure below and POIs are in red dots while non-POIs are
