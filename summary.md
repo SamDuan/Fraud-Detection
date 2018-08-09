@@ -124,6 +124,7 @@ comparable with some of the financial features now.
 So it is quite critical to do the scaling to the dataset before loading them
 into the classifiers.
 
+<!---
 ## Picking and tuning algorithms
 
 ## Validation
@@ -131,3 +132,4 @@ into the classifiers.
 ## Algorithms performance evaluation
 
 ## Reflection
+--->
