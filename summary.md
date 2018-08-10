@@ -97,7 +97,7 @@ and features.
 
 ![](summary_files/score-fig1.png)
 
-Few observations
+Few observations:
 1. The difference between the max and min score is roughly an order of magnitude.
 2. The financial features in general have higher ranking than email features.
 3. One of the new features "Percentage of emails from this person to POIs (%)"
