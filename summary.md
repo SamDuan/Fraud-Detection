@@ -20,21 +20,14 @@ dictionary key is the person's name, and the value is another dictionary, which
 contains the names of all the features and their values for that person. The
  features in the data fall into three major types:
 
-1. financial features (14 in total): ['salary', 'deferral_payments',
-'total_payments', 'loan_advances', 'bonus', 'restricted_stock_deferred',
-'deferred_income', 'total_stock_value', 'expenses', 'exercised_stock_options',
-'other', 'long_term_incentive', 'restricted_stock', 'director_fees']
-(all units are in US dollars)
+1. financial features (14 in total): e.g salary, loan_advances, bonus, etc
+(all units are in US dollars).
+2. email features (6 in total): the number of emails received (to_messages),
+the number of emails from POI (from_poi_to_this_person), etc (units are
+  generally number of emails messages)
+3. POI label (1 in total) (1 means that this person is a POI, vice versa)
 
-2. email features (6 in total): ['to_messages', 'email_address',
-'from_poi_to_this_person', 'from_messages', 'from_this_person_to_poi',
-'shared_receipt_with_poi'] (units   are generally number of emails messages;
-  notable exception is ‘email_address’, which is a text string)
-
-3. POI label (1 in total): [‘poi’] (boolean, represented as integer)
-
-Dictionary is stored as a pickle file, which is the format of the data source
-for this project. A brief overview of the dataset is as follows:
+A brief overview of the dataset is as follows:
 1. It includes the information of 146 people.
 2. Among them, there 18 POI (person of interest) and 128 non-POI.
 3. For each person, there are total 21 features and corresponding values
@@ -98,31 +91,16 @@ To figure the importance of each feature which is either financial or email
 features, SelectKBest (a univariate feature selection) is used. Note that
 'email_address' is not included since it contains text strings, and 'other' is
 not used either since this feature is not clearly defined. In addition,
-MinMaxScaler is deployed to scale each feature to the range between 0 and 1. Out
-of curiosity, I firstly run SelectBest on the unscaled features and the scores
-are plotted on a bar chart shown below:
+MinMaxScaler is deployed to scale each feature to the range between 0 and 1, and
+that score comes from f_classif, which represents ANOVA F-value between label
+and features.
 
 ![](summary_files/score-fig1.png)
 
-Couple things observed:
-1. The scale is ten to the power of 8.
-2. The financial features are top ranking while the score for email features are
-too small that they cannot be seen on this scale.
-
-Then I run SelectBest on the scaled features and the bar chart below shows their
-scores:
-
-![](summary_files/score-fig2.png)
-
-It can be noted that:
-1. The scale is ten to the power of 1 (it was 8 previously).
-2. The financial features remain at the top but the email features are
-comparable with some of the financial features now.
-3. One of the new features "Percentage of emails from this person to POIs (%)"
-(to_poi_percnt) is ranked 6th!
-
-So it is quite critical to do the scaling to the dataset before loading them
-into the classifiers.
+Few observations
+1. The difference between the max and min score is roughly an order of magnitude.
+2. The financial features in general have higher ranking than email features.
+3. One of the new features "Percentage of emails from this person to POIs (%)"(fraction_to_poi) is ranked 5th.
 
 <!---
 ## Picking and tuning algorithms
