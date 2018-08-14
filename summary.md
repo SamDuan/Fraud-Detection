@@ -105,6 +105,7 @@ Few observations:
 
 <!---
 ## Picking and tuning algorithms
+Decision tree and logistic regression are selected.
 
 ## Validation
 
