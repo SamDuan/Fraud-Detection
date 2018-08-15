@@ -113,3 +113,9 @@ Decision tree and logistic regression are selected.
 
 ## Reflection
 --->
+
+References:
+-Udacity resources
+1. https://discussions.udacity.com/t/what-are-the-testing-features-when-using-selectkbest/234832/8
+2. https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118/4
+3. https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178/10
