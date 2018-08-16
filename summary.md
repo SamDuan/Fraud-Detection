@@ -103,10 +103,13 @@ Few observations:
 3. One of the new features "Percentage of emails from this person to POIs (%)"
 (fraction_to_poi) is ranked 5th.
 
-<!---
-## Picking and tuning algorithms
-Decision tree and logistic regression are selected.
 
+## Picking and tuning algorithms
+Decision tree and logistic regression are selected to be the algorithms to
+build the models. GridCVSearch and Pipeline are used to expedite the
+parameters optimization.
+
+<!---
 ## Validation
 
 ## Algorithms performance evaluation
