@@ -92,7 +92,10 @@ features, SelectKBest (a univariate feature selection) is used. Note that
 'email_address' is not included since it contains text strings, and 'other' is
 not used either since this feature is not clearly defined. In addition,
 MinMaxScaler is deployed to scale each feature to the range between 0 and 1, and
-that score comes from f_classif, which represents ANOVA F-value between label
+that score comes from f_classif, which represents ANOVA F-value (the linear
+  dependency between each feature and label)[2,3]
+
+  ) between label
 and features.
 
 ![](summary_files/score-fig1.png)
@@ -134,6 +137,9 @@ data set is deployed to make an estimate of the performance of this model (i.e.
 
 References
 1. https://discussions.udacity.com/t/encore-des-outliers-2nd-last-part-of-the-outliers-section/31747
+2. https://stackoverflow.com/questions/49214001/what-do-these-f-scores-mean-using-selectkbest-feature
+3. http://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection
+
 1. https://discussions.udacity.com/t/what-are-the-testing-features-when-using-selectkbest/234832/8
 2. https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118/4
 3. https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178/10
