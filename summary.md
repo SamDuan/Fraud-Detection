@@ -33,7 +33,7 @@ A brief overview of the dataset is as follows:
 3. For each person, there are total 21 features and corresponding values
 recorded.
 
-## Outliers investigation
+## Outliers investigation[1]
 To identify the outliers, I start looking at the salary and bonus of each
 person in this dataset. From the scatter plot, I found that a person's salary
 is generally proportion to his/her bonus. In addition, red dots are chosen for
@@ -133,6 +133,7 @@ data set is deployed to make an estimate of the performance of this model (i.e.
 --->
 
 References
+1. https://discussions.udacity.com/t/encore-des-outliers-2nd-last-part-of-the-outliers-section/31747/12
 1. https://discussions.udacity.com/t/what-are-the-testing-features-when-using-selectkbest/234832/8
 2. https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118/4
 3. https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178/10
