@@ -112,9 +112,19 @@ parameters optimization.
 
 
 ## Validation
-After the model is built by using the training data set, the testing data set
-is then imported to test its performance. A set of metrics, including precision,
- recall and accuracy are used and recorded for performance evaluation.
+After the model is built by using the training data set, a separating testing
+data set is deployed to make an estimate of the performance of this model (i.e.
+  the classifier) on an independent dataset. In addition, the testing data
+  serves as check on over-fitting. As to which data is for training or for
+  testing, k-fold cross-validation is applied. In k-fold cross-validation, "
+   the original sample is randomly partitioned into k equal sized subsamples.
+   Of the k subsamples, a single subsample is retained as the validation data
+   for testing the model, and the remaining k − 1 subsamples are used as
+   training data. The cross-validation process is then repeated k times, with
+   each of the k subsamples used exactly once as the validation data. The k
+   results can then be averaged to produce a single estimation." [4]
+   A set of metrics, including precision, recall and accuracy are used and
+   recorded for performance evaluation.
 
 <!---
 ## Algorithms performance evaluation
@@ -122,7 +132,8 @@ is then imported to test its performance. A set of metrics, including precision,
 ## Reflection
 --->
 
-References (Udacity resources)
+References
 1. https://discussions.udacity.com/t/what-are-the-testing-features-when-using-selectkbest/234832/8
 2. https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118/4
 3. https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178/10
+4. https://en.wikipedia.org/wiki/Cross-validation_(statistics)
