@@ -93,10 +93,7 @@ features, SelectKBest (a univariate feature selection) is used. Note that
 not used either since this feature is not clearly defined. In addition,
 MinMaxScaler is deployed to scale each feature to the range between 0 and 1, and
 that score comes from f_classif, which represents ANOVA F-value (the linear
-  dependency between each feature and label)[2,3]
-
-  ) between label
-and features.
+  dependency between each feature and label)[2,3] between label and features.
 
 ![](summary_files/score-fig1.png)
 
@@ -106,11 +103,15 @@ Few observations:
 3. One of the new features "Percentage of emails from this person to POIs (%)"
 (fraction_to_poi) is ranked 5th.
 
-
 ## Picking and tuning algorithms
 Decision tree and logistic regression are selected to be the algorithms to
 build the models. GridCVSearch and Pipeline are used to expedite the
 parameters optimization.
+
+Firstly, I want to figure out the optimal number of features before going into
+the optimization of the algorithms. This step is made easy by GridCVSearch and
+Pipeline as well! Without these two, this would be a very tedious and
+perhaps time-consuming work.
 
 
 
