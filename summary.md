@@ -109,9 +109,14 @@ Decision tree and logistic regression are selected to be the algorithms to
 build the models. GridCVSearch and Pipeline are used to expedite the
 parameters optimization.
 
-<!---
-## Validation
 
+
+## Validation
+After the model is built by using the training data set, the testing data set
+is then imported to test its performance. A set of metrics, including precision,
+ recall and accuracy are used and recorded for performance evaluation.
+
+<!---
 ## Algorithms performance evaluation
 
 ## Reflection
