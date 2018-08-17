@@ -113,7 +113,19 @@ the optimization of the algorithms. This step is made easy by GridCVSearch and
 Pipeline as well! Without these two, this would be a very tedious and
 perhaps time-consuming work.
 
+A prelim run
+Accuracy: 0.81307,
+Precision: 0.28662,
+Recall: 0.27000,
+F1: 0.27806,
+F2: 0.27317
 
+1st run after # of features optimization
+Accuracy: 0.76000,
+Precision: 0.33454,
+Recall: 0.32350,
+F1: 0.32893,
+F2: 0.32565
 
 ## Validation
 After the model is built by using the training data set, a separating testing
