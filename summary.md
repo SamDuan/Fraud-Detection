@@ -106,7 +106,7 @@ Few observations:
 ## Picking and tuning algorithms
 Decision tree and logistic regression are selected to be the algorithms to
 build the models. GridCVSearch and Pipeline are used to expedite the
-parameters optimization.
+parameters optimization[4,5].
 
 Firstly, I want to figure out the optimal number of features before going into
 the optimization of the algorithms. This step is made easy by GridCVSearch and
@@ -116,7 +116,7 @@ perhaps time-consuming work.
 The optimal number of features is found to be 6, when no optimization of the
 decision tree is employed. Accuracy, Precision and Recall all show improvement
 with the number of features is reduced from 21 to 6, shown in the bar chart
-below:
+below[6]:
 
 ![](summary_files/number_of_features_optim.png)
 
@@ -138,7 +138,6 @@ Note that the first five selected are the top five in F-value ranking, while
 the sixth "shared_receipt_with_poi" is not. In addition, the new feature
 "fraction_to_poi" is included in this selection.
 
-
 ## Validation
 After the model is built by using the training data set, a separating testing
 data set is deployed to make an estimate of the performance of this model (i.e.
@@ -150,7 +149,7 @@ data set is deployed to make an estimate of the performance of this model (i.e.
    for testing the model, and the remaining k − 1 subsamples are used as
    training data. The cross-validation process is then repeated k times, with
    each of the k subsamples used exactly once as the validation data. The k
-   results can then be averaged to produce a single estimation." [4]
+   results can then be averaged to produce a single estimation." [7]
    A set of metrics, including precision, recall and accuracy are used and
    recorded for performance evaluation.
 
@@ -164,8 +163,7 @@ References
 1. https://discussions.udacity.com/t/encore-des-outliers-2nd-last-part-of-the-outliers-section/31747
 2. https://stackoverflow.com/questions/49214001/what-do-these-f-scores-mean-using-selectkbest-feature
 3. http://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection
-
-1. https://discussions.udacity.com/t/what-are-the-testing-features-when-using-selectkbest/234832/8
-2. https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118/4
-3. https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178/10
-4. https://en.wikipedia.org/wiki/Cross-validation_(statistics)
+4. https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118
+5. https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178
+6. https://python-graph-gallery.com/11-grouped-barplot/
+7. https://en.wikipedia.org/wiki/Cross-validation_(statistics)
