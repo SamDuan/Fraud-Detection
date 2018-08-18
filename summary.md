@@ -104,9 +104,9 @@ Few observations:
 (fraction_to_poi) is ranked 5th.
 
 ## Picking and tuning algorithms
-Decision tree and logistic regression are selected to be the algorithms to
-build the models. GridCVSearch and Pipeline are used to expedite the
-parameters optimization [4, 5].
+Decision tree and logistic regression are selected to build the models.
+GridCVSearch and Pipeline are used to expedite the parameters optimization
+[4, 5].
 
 Firstly, I want to figure out the optimal number of features before going into
 the optimization of the algorithms. This step is made easy by GridCVSearch and
@@ -126,7 +126,7 @@ larger than 0.3, and a blue line is added on the chart representing this
 threshold. Accuracy improves slightly: 0.81 to 0.82, but both precision and
 recall improve quite a bit. Precision increases from 0.29 to 0.37, and recall
 from 0.27 to 0.39. The model performance has passed the threshold before
-the parameter of the decision tree is optimized! 
+the parameter of the decision tree is optimized!
 
 The 6 selected features are:
 1. exercised_stock_options
