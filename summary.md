@@ -42,7 +42,7 @@ appears to be unusually distant from the rest of the data.
 
 ![](summary_files/outlier-fig1.png)
 
-Then with the use of list comprehension[1], "total" is identified to be this
+Then with the use of list comprehension [1], "total" is identified to be this
 distinct observation! In fact, it is likely a spreadsheet quirk since the
 spreadsheet added up all the data points automatically as it was generated.
 
@@ -106,7 +106,7 @@ Few observations:
 ## Picking and tuning algorithms
 Decision tree and logistic regression are selected to be the algorithms to
 build the models. GridCVSearch and Pipeline are used to expedite the
-parameters optimization[4,5].
+parameters optimization [4, 5].
 
 Firstly, I want to figure out the optimal number of features before going into
 the optimization of the algorithms. This step is made easy by GridCVSearch and
