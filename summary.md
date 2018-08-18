@@ -113,6 +113,11 @@ the optimization of the algorithms. This step is made easy by GridCVSearch and
 Pipeline as well! Without these two, this would be a very tedious and
 perhaps time-consuming work.
 
+The optimal number of features is found to be 6, when no optimization of the
+decision tree is employed. Accuracy, Precision and Recall all show improvement
+with the number of features is reduced from 21 to 6, shown in the bar chart
+below:
+
 A prelim run
 Accuracy: 0.81307,
 Precision: 0.28662,
