@@ -113,7 +113,8 @@ the optimization of the algorithms. This step is made easy by GridCVSearch and
 Pipeline as well! Without these two, this would be a very tedious and
 perhaps time-consuming work.
 
-The optimal number of features is found to be 6, when no optimization of the
+Given the classifier is the decision tree with all the default setting, the
+optimal number of features is found to be 6, when no optimization of the
 decision tree is employed. Accuracy, Precision and Recall all show improvement
 with the number of features is reduced from 21 to 6, shown in the bar chart
 below [6]:
@@ -124,7 +125,8 @@ The minimum requirement of the performance is to have both precision and recall
 larger than 0.3, and a blue line is added on the chart representing this
 threshold. Accuracy improves slightly: 0.81 to 0.82, but both precision and
 recall improve quite a bit. Precision increases from 0.29 to 0.37, and recall
-from 0.27 to 0.39.
+from 0.27 to 0.39. The model performance has passed the threshold before
+the parameter of the decision tree is optimized! 
 
 The 6 selected features are:
 1. exercised_stock_options
