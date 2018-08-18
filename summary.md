@@ -121,21 +121,23 @@ below:
 ![](summary_files/number_of_features_optim.png)
 
 The minimum requirement of the performance is to have both precision and recall
-larger than 0.3.
+larger than 0.3, and a blue line is added on the chart representing this
+threshold. Accuracy improves slightly: 0.81 to 0.82, but both precision and
+recall improve quite a bit. Precision increases from 0.29 to 0.37, and recall
+from 0.27 to 0.39.
 
-A prelim run
-Accuracy: 0.81307,
-Precision: 0.28662,
-Recall: 0.27000,
-F1: 0.27806,
-F2: 0.27317
+The 6 selected features are:
+1. exercised_stock_options
+2. total_stock_value
+3. bonus
+4. salary
+5. fraction_to_poi
+6. shared_receipt_with_poi
 
-1st run after # of features optimization
-Accuracy: 0.76000,
-Precision: 0.33454,
-Recall: 0.32350,
-F1: 0.32893,
-F2: 0.32565
+Note that the first five selected are the top five in F-value ranking, while
+the sixth "shared_receipt_with_poi" is not. In addition, the new feature
+"fraction_to_poi" is included in this selection.
+
 
 ## Validation
 After the model is built by using the training data set, a separating testing
