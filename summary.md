@@ -118,6 +118,11 @@ decision tree is employed. Accuracy, Precision and Recall all show improvement
 with the number of features is reduced from 21 to 6, shown in the bar chart
 below:
 
+![](summary_files/number_of_features_optim.png)
+
+The minimum requirement of the performance is to have both precision and recall
+larger than 0.3.
+
 A prelim run
 Accuracy: 0.81307,
 Precision: 0.28662,
