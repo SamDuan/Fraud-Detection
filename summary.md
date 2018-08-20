@@ -144,6 +144,11 @@ Now, we begin to optimize and tune the parameters for the decision tree,
 including: criterion (gini or entropy), minimum samples split, maximum depth,
 minimum samples leaf, maximum leaf nodes.
 
+A further optimization on the parameters of the decision tree results in
+the improvement on the precision as shown below.
+
+![](summary_files/tree_optim.png)
+
 ## Validation
 After the model is built by using the training data set, a separating testing
 data set is deployed to make an estimate of the performance of this model (i.e.
