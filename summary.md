@@ -140,6 +140,10 @@ Note that the first five selected are the top five in F-value ranking, while
 the sixth "shared_receipt_with_poi" is not. In addition, the new feature
 "fraction_to_poi" is included in this selection.
 
+Now, we begin to optimize and tune the parameters for the decision tree,
+including: criterion (gini or entropy), minimum samples split, maximum depth,
+minimum samples leaf, maximum leaf nodes.
+
 ## Validation
 After the model is built by using the training data set, a separating testing
 data set is deployed to make an estimate of the performance of this model (i.e.
