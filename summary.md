@@ -96,7 +96,9 @@ that score comes from f_classif, which represents ANOVA F-value (the linear
   dependency between each feature and label) [2, 3] between label and features.
 
 <img src="summary_files/score-fig1.png" alt="score-fig1" align="middle">
+<!---
 ![](summary_files/score-fig1.png)
+--->
 
 Few observations:
 >1. The difference between the max and min score is roughly an order of magnitude.
