@@ -27,7 +27,7 @@ the number of emails from POI (`from_poi_to_this_person`), etc (units are
   generally number of emails messages)
 3. POI label (1 in total) (1 means that this person is a POI, vice versa)
 
-A brief overview of the dataset is as follows:
+__A brief overview of the dataset:__
 1. It includes the information of 146 people.
 2. Among them, there 18 POI (person of interest) and 128 non-POI.
 3. For each person, there are total 21 features and corresponding values
