@@ -132,6 +132,9 @@ precision and recall for logistic regression are particularly low. Thus, in the
 following, the decision tree is chosen to tune parameters.
 
 ## Tuning parameters
+<!--- pause here, 12:09pm 8/21
+--->
+
 GridCVSearch and Pipeline are used to expedite the parameters optimization
 [4, 5].
 
