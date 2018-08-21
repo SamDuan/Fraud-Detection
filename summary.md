@@ -110,6 +110,10 @@ Few observations:
 | Precision  |0.29|0.17|
 | Recall  |0.27|0.17|
 
+Since the label is binary, intuitively I would assume logistic regressions shall
+give a better performance even without tuning the parameters. However, it is
+found that decision tree outperforms logistic regression in their original form.
+Thus, in the following, the decision tree is selected for optimization.
 
 ## Tuning parameters
 Decision tree and logistic regression are selected to build the models.
