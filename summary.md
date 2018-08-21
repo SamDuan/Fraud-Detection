@@ -207,8 +207,7 @@ on the precision as shown below.
 And we visualize the decision tree [7]:
 
 <p align="center">
-  <img src="https://github.com/SamDuan/Fraud-Detection/raw/master/summary_files/
-  tree_optim_vis.png" alt="score_number_of_features_optim.png"/>
+  <img src="summary_files/tree_optim_vis.png" alt="score_number_of_features_optim.png"/>
 </p>
 
 <!---
