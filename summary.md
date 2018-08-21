@@ -167,7 +167,7 @@ on the precision as shown below.
 
 ![](summary_files/score_tree_optim.png)
 
-And we visualize the decision tree:
+And we visualize the decision tree [7]:
 
 ![](summary_files/tree_optim_vis.png)
 
@@ -181,17 +181,18 @@ Parameter setting that corresponds to the optimal tree:
 
 
 ## Model Validation and Performance
-After the model is built by using the training data set, a separating testing
-data set is deployed to make an estimate of the performance of this model (i.e.
-  the classifier) on an independent dataset. In addition, the testing data
-  serves as check on over-fitting. As to which data is for training or for
-  testing, k-fold cross-validation is applied. In k-fold cross-validation, "
-   the original sample is randomly partitioned into k equal sized subsamples.
-   Of the k subsamples, a single subsample is retained as the validation data
-   for testing the model, and the remaining k − 1 subsamples are used as
-   training data. The cross-validation process is then repeated k times, with
-   each of the k subsamples used exactly once as the validation data. The k
-   results can then be averaged to produce a single estimation." [7]
+After the model is built by the training data set, the performance of this model
+ (i.e. the classifier) is estimated by a separate testing dataset. In addition,
+ the testing data can serve as check on over-fitting. Here k-fold
+ cross-validation is applied to generalize the splitting the data set into
+ the training and the testing data set.
+ What is k-fold cross-validation? "The original sample is randomly partitioned
+ into k equal sized subsamples. Of the k subsamples, a single subsample is
+ retained as the validation data for testing the model, and the remaining k − 1
+ subsamples are used as training data. The cross-validation process is then
+ repeated k times, with each of the k subsamples used exactly once as the
+ validation data. The k results can then be averaged to produce a single
+ estimation." [8]
    A set of metrics, including precision, recall and accuracy are used and
    recorded for performance evaluation.
 
@@ -208,4 +209,5 @@ References:
 4. https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118
 5. https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178
 6. https://python-graph-gallery.com/11-grouped-barplot/
-7. https://en.wikipedia.org/wiki/Cross-validation_(statistics)
+7. https://stackoverflow.com/questions/42891148/changing-colors-for-decision-tree-plot-created-using-export-graphviz
+8. https://en.wikipedia.org/wiki/Cross-validation_(statistics)
