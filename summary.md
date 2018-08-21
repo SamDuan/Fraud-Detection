@@ -119,7 +119,7 @@ decision tree is employed. Accuracy, Precision and Recall all show improvement
 with the number of features is reduced from 21 to 6, shown in the bar chart
 below [6]:
 
-![](summary_files/number_of_features_optim.png)
+![](summary_files/score_number_of_features_optim.png)
 
 The minimum requirement of the performance is to have both precision and recall
 larger than 0.3, and a blue line is added on the chart representing this
@@ -147,7 +147,12 @@ cross-validator is employed as well. A further optimization on the
 parameters of the decision tree results in the improvement on the precision as
 shown below.
 
-![](summary_files/tree_optim.png)
+![](summary_files/score_tree_optim.png)
+
+And we visualize the decision tree:
+
+![](summary_files/tree_optim_vis.png)
+
 
 ## Validation
 After the model is built by using the training data set, a separating testing
@@ -163,6 +168,8 @@ data set is deployed to make an estimate of the performance of this model (i.e.
    results can then be averaged to produce a single estimation." [7]
    A set of metrics, including precision, recall and accuracy are used and
    recorded for performance evaluation.
+
+
 
 <!---
 ## Algorithms performance evaluation
