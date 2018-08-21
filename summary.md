@@ -103,6 +103,14 @@ Few observations:
 3. One of the new features "Percentage of emails from this person to POIs (%)"
 (fraction_to_poi) is ranked 5th.
 
+## Algorithms
+|   |Decision Trees   | Logistic Regression  |
+|---|---|---|
+| Accuracy  |0.81|0.78|
+| Precision  |0.29|0.17|
+| Recall  |0.27|0.17|
+
+
 ## Tuning parameters
 Decision tree and logistic regression are selected to build the models.
 GridCVSearch and Pipeline are used to expedite the parameters optimization
