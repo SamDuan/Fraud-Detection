@@ -20,8 +20,8 @@ dictionary key is the person's name, and the value is another dictionary, which
 contains the names of all the features and their values for that person. The
  features in the data fall into three major types:
 
->1. financial features (14 in total): e.g `salary`, `loan_advances`, `bonus`, etc
-(all units are in US dollars).
+>1. financial features (14 in total): e.g `salary`, `loan_advances`, `bonus`,
+ etc (all units are in US dollars).
 >2. email features (6 in total): the number of emails received (`to_messages`),
 the number of emails from POI (`from_poi_to_this_person`), etc (units are
   generally number of emails messages)
@@ -40,7 +40,14 @@ is generally proportion to his/her bonus. In addition, red dots are chosen for
 POIs and blue dots, non-POIs. However, a non-POI point at the top right corner
 appears to be unusually distant from the rest of the data.
 
+<!---
 ![](summary_files/outlier-fig1.png)
+--->
+
+<p align="center">
+  <img src="https://github.com/SamDuan/Fraud-Detection/raw/master/summary_files/
+  outlier-fig1.png" alt="outlier-fig1"/>
+</p>
 
 Then with the use of list comprehension [1], "total" is identified to be this
 distinct observation! In fact, it is likely a spreadsheet quirk since the
@@ -51,7 +58,14 @@ points with salary larger than $1,000,000 or bonus more than $5,000,000 are
 considered as outliers. A vertical and a horizontal line are drawn,
 respectively, to assist the identification.
 
+<!---
 ![](summary_files/outlier-fig2.png)
+--->
+
+<p align="center">
+  <img src="https://github.com/SamDuan/Fraud-Detection/raw/master/summary_files/
+  outlier-fig2.png" alt="outlier-fig2"/>
+</p>
 
 Five points fall into this category in which either salary larger than
 $1,000,000 or bonus more than $5,000,000. Based on the coloration, three of
@@ -86,7 +100,8 @@ They are plotted in the figure below and POIs are in red dots while non-POIs are
 in blue dots.
 
 <p align="center">
-  <img src="https://github.com/SamDuan/Fraud-Detection/blob/master/summary_files/newfeature-fig1.png" alt="newfeature-fig1"/>
+  <img src="https://github.com/SamDuan/Fraud-Detection/blob/master/
+  summary_files/newfeature-fig1.png" alt="newfeature-fig1"/>
 </p>
 
 <!---
@@ -102,7 +117,8 @@ that score comes from f_classif, which represents ANOVA F-value (the linear
   dependency between each feature and label) [2, 3] between label and features.
 
 <p align="center">
-  <img src="summary_files/score-fig1.png" alt="score-fig1"/>
+  <img src="https://github.com/SamDuan/Fraud-Detection/blob/master/
+  summary_files/score-fig1.png" alt="score-fig1"/>
 </p>
 
 
@@ -179,11 +195,25 @@ Stratified ShuffleSplit cross-validator is employed as well. A further
 optimization on the parameters of the decision tree results in the improvement
 on the precision as shown below.
 
+<p align="center">
+  <img src="https://github.com/SamDuan/Fraud-Detection/raw/master/summary_files/
+  score_number_of_features_optim.png" alt="score_number_of_features_optim.png"/>
+</p>
+
+<!---
 ![](summary_files/score_tree_optim.png)
+--->
 
 And we visualize the decision tree [7]:
 
+<p align="center">
+  <img src="https://github.com/SamDuan/Fraud-Detection/raw/master/summary_files/
+  tree_optim_vis.png" alt="score_number_of_features_optim.png"/>
+</p>
+
+<!---
 ![](summary_files/tree_optim_vis.png)
+--->
 
 Parameter setting that corresponds to the optimal tree:
 
