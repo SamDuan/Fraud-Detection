@@ -10,8 +10,8 @@ resulting Federal investigation, a significant amount of typically confidential
 
 More specifically, a dataset of persons and features associated with them is
 given, and then the goal is to build a classifier algorithm around it that can
-predict if individuals should be flagged as POIs or not. This is a dataset of
-146 observations and 21 features.
+predict if individuals should be flagged as POIs or not. This dataset consists
+of 146 observations and 21 features.
 
 ## Data exploration
 The aggregated Enron email & financial dataset is stored in a dictionary,
