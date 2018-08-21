@@ -85,7 +85,13 @@ to POI / # emails from this person
 They are plotted in the figure below and POIs are in red dots while non-POIs are
 in blue dots.
 
+<p align="center">
+  <img src="summary_files/newfeature-fig1.png" alt="newfeature-fig1"/>
+</p>
+
+<!---
 ![](summary_files/newfeature-fig1.png)
+--->
 
 To figure the importance of each feature which is either financial or email
 features, SelectKBest (a univariate feature selection) is used. Note that
