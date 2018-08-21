@@ -154,7 +154,7 @@ And we visualize the decision tree:
 ![](summary_files/tree_optim_vis.png)
 
 
-## Validation
+## Model Validation and Performance
 After the model is built by using the training data set, a separating testing
 data set is deployed to make an estimate of the performance of this model (i.e.
   the classifier) on an independent dataset. In addition, the testing data
@@ -172,8 +172,6 @@ data set is deployed to make an estimate of the performance of this model (i.e.
 
 
 <!---
-## Algorithms performance evaluation
-
 ## Reflection
 --->
 
