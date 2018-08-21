@@ -20,10 +20,10 @@ dictionary key is the person's name, and the value is another dictionary, which
 contains the names of all the features and their values for that person. The
  features in the data fall into three major types:
 
-1. financial features (14 in total): e.g salary, loan_advances, bonus, etc
+1. financial features (14 in total): e.g `salary`, `loan_advances`, `bonus`, etc
 (all units are in US dollars).
-2. email features (6 in total): the number of emails received (to_messages),
-the number of emails from POI (from_poi_to_this_person), etc (units are
+2. email features (6 in total): the number of emails received (`to_messages`),
+the number of emails from POI (`from_poi_to_this_person`), etc (units are
   generally number of emails messages)
 3. POI label (1 in total) (1 means that this person is a POI, vice versa)
 
@@ -101,7 +101,7 @@ Few observations:
 1. The difference between the max and min score is roughly an order of magnitude.
 2. The financial features in general have higher ranking than email features.
 3. One of the new features "Percentage of emails from this person to POIs (%)"
-(fraction_to_poi) is ranked 5th.
+(`fraction_to_poi`) is ranked 5th.
 
 ## Algorithms
 |   |Decision Trees   | Logistic Regression  |
@@ -142,16 +142,16 @@ from 0.27 to 0.39. The model performance has passed the threshold before
 the parameter of the decision tree is optimized!
 
 The 6 selected features are:
-1. exercised_stock_options
-2. total_stock_value
-3. bonus
-4. salary
-5. fraction_to_poi
-6. shared_receipt_with_poi
+1. `exercised_stock_options`
+2. `total_stock_value`
+3. `bonus`
+4. `salary`
+5. `fraction_to_poi`
+6. `shared_receipt_with_poi`
 
 Note that the first five selected are the top five in F-value ranking, while
-the sixth "shared_receipt_with_poi" is not. In addition, the new feature
-"fraction_to_poi" is included in this selection.
+the sixth `shared_receipt_with_poi` is not. In addition, the new feature
+`fraction_to_poi` is included in this selection.
 
 Now, we begin to optimize and tune the parameters for the decision tree,
 including:
