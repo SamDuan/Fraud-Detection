@@ -207,11 +207,11 @@ To do:
 --->
 
 References:
-1. https://discussions.udacity.com/t/encore-des-outliers-2nd-last-part-of-the-outliers-section/31747
-2. https://stackoverflow.com/questions/49214001/what-do-these-f-scores-mean-using-selectkbest-feature
-3. http://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection
-4. https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118
-5. https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178
-6. https://python-graph-gallery.com/11-grouped-barplot/
-7. https://stackoverflow.com/questions/42891148/changing-colors-for-decision-tree-plot-created-using-export-graphviz
-8. https://en.wikipedia.org/wiki/Cross-validation_(statistics)
+>1. https://discussions.udacity.com/t/encore-des-outliers-2nd-last-part-of-the-outliers-section/31747
+>2. https://stackoverflow.com/questions/49214001/what-do-these-f-scores-mean-using-selectkbest-feature
+>3. http://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection
+>4. https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118
+>5. https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178
+>6. https://python-graph-gallery.com/11-grouped-barplot/
+>7. https://stackoverflow.com/questions/42891148/changing-colors-for-decision-tree-plot-created-using-export-graphviz
+>8. https://en.wikipedia.org/wiki/Cross-validation_(statistics)
