@@ -57,11 +57,11 @@ Five points fall into this category in which either salary larger than
 $1,000,000 or bonus more than $5,000,000. Based on the coloration, three of
 these five points are people of interest (red dots). Using a list comprehension,
  the names corresponding to the outliers are:
-1. John J Lavorato
-2. Kenneth L Lay
-3. Timothy N Belden
-4. Jeffrey K Skilling
-5. Mark A Frevert
+>1. John J Lavorato
+>2. Kenneth L Lay
+>3. Timothy N Belden
+>4. Jeffrey K Skilling
+>5. Mark A Frevert
 
 It turns out that Kenneth L Lay is the former chairman and CEO, Jeffrey Skilling
  is the former president and COO, and Timothy N Belden is the former head of
@@ -76,10 +76,10 @@ other. In other words, they send each other emails at a higher rate than people
 in the population at large who send emails to POIs. Two new features are
 therefore defined to measure the strength of the email connections, which are:
 
-● Percentage of emails from POIs to this person (%) = # emails from POI to this
+>● Percentage of emails from POIs to this person (%) = # emails from POI to this
 person / # emails to this person
 
-● Percentage of emails from this person to POIs (%) = # emails from this person
+>● Percentage of emails from this person to POIs (%) = # emails from this person
 to POI / # emails from this person
 
 They are plotted in the figure below and POIs are in red dots while non-POIs are
@@ -98,10 +98,10 @@ that score comes from f_classif, which represents ANOVA F-value (the linear
 ![](summary_files/score-fig1.png)
 
 Few observations:
-1. The difference between the max and min score is roughly an order of magnitude.
-2. The financial features in general have higher ranking than email features.
-3. One of the new features "Percentage of emails from this person to POIs (%)"
-(`fraction_to_poi`) is ranked 5th.
+>1. The difference between the max and min score is roughly an order of magnitude.
+>2. The financial features in general have higher ranking than email features.
+>3. One of the new features "Percentage of emails from this person to POIs (%)"
+>(`fraction_to_poi`) is ranked 5th.
 
 ## Algorithms
 |   |Decision Trees   | Logistic Regression  |
@@ -142,12 +142,12 @@ from 0.27 to 0.39. The model performance has passed the threshold before
 the parameter of the decision tree is optimized!
 
 The 6 selected features are:
-1. `exercised_stock_options`
-2. `total_stock_value`
-3. `bonus`
-4. `salary`
-5. `fraction_to_poi`
-6. `shared_receipt_with_poi`
+>1. `exercised_stock_options`
+>2. `total_stock_value`
+3>. `bonus`
+4.> `salary`
+>5. `fraction_to_poi`
+>6. `shared_receipt_with_poi`
 
 Note that the first five selected are the top five in F-value ranking, while
 the sixth `shared_receipt_with_poi` is not. In addition, the new feature
@@ -156,11 +156,11 @@ the sixth `shared_receipt_with_poi` is not. In addition, the new feature
 Now, we begin to optimize and tune the parameters for the decision tree,
 including:
 
-1. criterion: gini or entropy
-2. maximum depth
-3. maximum leaf nodes
-4. minimum samples leaf
-5. minimum samples split
+>1. criterion: gini or entropy
+>2. maximum depth
+>3. maximum leaf nodes
+>4. minimum samples leaf
+>5. minimum samples split
 
 Stratified ShuffleSplit cross-validator is employed as well. A further
 optimization on the parameters of the decision tree results in the improvement
@@ -174,11 +174,11 @@ And we visualize the decision tree [7]:
 
 Parameter setting that corresponds to the optimal tree:
 
-1. criterion: entropy
-2. maximum depth: 5
-3. maximum leaf nodes: None
-4. minimum samples leaf: 1
-5. minimum samples split: 2
+>1. criterion: entropy
+>2. maximum depth: 5
+>3. maximum leaf nodes: None
+>4. minimum samples leaf: 1
+>5. minimum samples split: 2
 
 ## Model Validation and Performance
 After the model is built by the training data set, the performance of this model
