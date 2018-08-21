@@ -98,7 +98,7 @@ They are plotted in the figure below and POIs are in red dots while non-POIs are
 in blue dots.
 
 <p align="center">
-  <img src="ummary_files/newfeature-fig1.png" alt="newfeature-fig1"/>
+  <img src="summary_files/newfeature-fig1.png" alt="newfeature-fig1"/>
 </p>
 
 <!---
