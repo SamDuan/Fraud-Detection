@@ -20,17 +20,17 @@ dictionary key is the person's name, and the value is another dictionary, which
 contains the names of all the features and their values for that person. The
  features in the data fall into three major types:
 
-1. financial features (14 in total): e.g `salary`, `loan_advances`, `bonus`, etc
+>1. financial features (14 in total): e.g `salary`, `loan_advances`, `bonus`, etc
 (all units are in US dollars).
-2. email features (6 in total): the number of emails received (`to_messages`),
+>2. email features (6 in total): the number of emails received (`to_messages`),
 the number of emails from POI (`from_poi_to_this_person`), etc (units are
   generally number of emails messages)
-3. POI label (1 in total) (1 means that this person is a POI, vice versa)
+>3. POI label (1 in total) (1 means that this person is a POI, vice versa)
 
-__A brief overview of the dataset:__
-1. It includes the information of 146 people.
-2. Among them, there 18 POI (person of interest) and 128 non-POI.
-3. For each person, there are total 21 features and corresponding values
+A brief overview of the dataset:
+>1. It includes the information of 146 people.
+>2. Among them, there 18 POI (person of interest) and 128 non-POI.
+>3. For each person, there are total 21 features and corresponding values
 recorded.
 
 ## Outliers investigation
