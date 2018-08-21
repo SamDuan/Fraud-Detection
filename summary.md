@@ -103,7 +103,7 @@ Few observations:
 3. One of the new features "Percentage of emails from this person to POIs (%)"
 (fraction_to_poi) is ranked 5th.
 
-## Picking and tuning algorithms
+## Tuning parameters
 Decision tree and logistic regression are selected to build the models.
 GridCVSearch and Pipeline are used to expedite the parameters optimization
 [4, 5].
@@ -141,17 +141,26 @@ the sixth "shared_receipt_with_poi" is not. In addition, the new feature
 "fraction_to_poi" is included in this selection.
 
 Now, we begin to optimize and tune the parameters for the decision tree,
-including: criterion (gini or entropy), minimum samples split, maximum depth,
-minimum samples leaf, maximum leaf nodes. Stratified ShuffleSplit
-cross-validator is employed as well. A further optimization on the
-parameters of the decision tree results in the improvement on the precision as
-shown below.
+including:
+1. criterion (gini or entropy)
+2. minimum samples split
+3. maximum depth
+4. minimum samples leaf
+5. maximum leaf nodes.
+
+Stratified ShuffleSplit cross-validator is employed as well. A further
+optimization on the parameters of the decision tree results in the improvement
+on the precision as shown below.
 
 ![](summary_files/score_tree_optim.png)
 
 And we visualize the decision tree:
 
 ![](summary_files/tree_optim_vis.png)
+
+criterion='gini', max_depth=None,
+            max_features=None, max_leaf_nodes=None,
+            min_...      min_weight_fraction_leaf=0.0,
 
 
 ## Model Validation and Performance
