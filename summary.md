@@ -179,7 +179,6 @@ Parameter setting that corresponds to the optimal tree:
 4. minimum samples leaf: 1
 5. minimum samples split: 2
 
-
 ## Model Validation and Performance
 After the model is built by the training data set, the performance of this model
  (i.e. the classifier) is estimated by a separate testing dataset. In addition,
@@ -195,9 +194,13 @@ After the model is built by the training data set, the performance of this model
  estimation." [8]
 
 To evaluate the performance of the model, precision, recall and accuracy are
-used. 
-
-
+used.
+<!---
+To do:
+1. go through this writing again
+2. give each reference a title
+3. submit the project
+--->
 <!---
 ## Reflection
 --->
