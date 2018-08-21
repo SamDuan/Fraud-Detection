@@ -142,11 +142,12 @@ the sixth "shared_receipt_with_poi" is not. In addition, the new feature
 
 Now, we begin to optimize and tune the parameters for the decision tree,
 including:
-1. criterion (gini or entropy)
-2. minimum samples split
-3. maximum depth
+
+1. criterion: gini or entropy
+2. maximum depth
+3. maximum leaf nodes
 4. minimum samples leaf
-5. maximum leaf nodes.
+5. minimum samples split
 
 Stratified ShuffleSplit cross-validator is employed as well. A further
 optimization on the parameters of the decision tree results in the improvement
@@ -158,9 +159,13 @@ And we visualize the decision tree:
 
 ![](summary_files/tree_optim_vis.png)
 
-criterion='gini', max_depth=None,
-            max_features=None, max_leaf_nodes=None,
-            min_...      min_weight_fraction_leaf=0.0,
+Parameter setting that corresponds to the optimal tree:
+
+1. criterion: entropy
+2. maximum depth: 5
+3. maximum leaf nodes: None
+4. minimum samples leaf: 1
+5. minimum samples split: 2
 
 
 ## Model Validation and Performance
