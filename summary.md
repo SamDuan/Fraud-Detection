@@ -144,8 +144,8 @@ the parameter of the decision tree is optimized!
 The 6 selected features are:
 >1. `exercised_stock_options`
 >2. `total_stock_value`
-3>. `bonus`
-4.> `salary`
+>3. `bonus`
+>4. `salary`
 >5. `fraction_to_poi`
 >6. `shared_receipt_with_poi`
 
