@@ -95,7 +95,7 @@ MinMaxScaler is deployed to scale each feature to the range between 0 and 1, and
 that score comes from f_classif, which represents ANOVA F-value (the linear
   dependency between each feature and label) [2, 3] between label and features.
 
-<img src="summary_files/score-fig1.png" alt="score-fig1" align="middle">
+<img align="middle" src="summary_files/score-fig1.png" alt="score-fig1">
 <!---
 ![](summary_files/score-fig1.png)
 --->
