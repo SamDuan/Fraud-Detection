@@ -45,8 +45,7 @@ appears to be unusually distant from the rest of the data.
 --->
 
 <p align="center">
-  <img src="https://github.com/SamDuan/Fraud-Detection/raw/master/summary_files/
-  outlier-fig1.png" alt="outlier-fig1"/>
+  <img src="summary_files/outlier-fig1.png"/>
 </p>
 
 Then with the use of list comprehension [1], "total" is identified to be this
@@ -63,8 +62,7 @@ respectively, to assist the identification.
 --->
 
 <p align="center">
-  <img src="https://github.com/SamDuan/Fraud-Detection/raw/master/summary_files/
-  outlier-fig2.png" alt="outlier-fig2"/>
+  <img src="summary_files/outlier-fig2.png"/>
 </p>
 
 Five points fall into this category in which either salary larger than
@@ -100,8 +98,7 @@ They are plotted in the figure below and POIs are in red dots while non-POIs are
 in blue dots.
 
 <p align="center">
-  <img src="https://github.com/SamDuan/Fraud-Detection/blob/master/
-  summary_files/newfeature-fig1.png" alt="newfeature-fig1"/>
+  <img src="ummary_files/newfeature-fig1.png" alt="newfeature-fig1"/>
 </p>
 
 <!---
@@ -117,8 +114,7 @@ that score comes from f_classif, which represents ANOVA F-value (the linear
   dependency between each feature and label) [2, 3] between label and features.
 
 <p align="center">
-  <img src="https://github.com/SamDuan/Fraud-Detection/blob/master/
-  summary_files/score-fig1.png" alt="score-fig1"/>
+  <img src="summary_files/score-fig1.png" alt="score-fig1"/>
 </p>
 
 
@@ -161,7 +157,13 @@ decision tree is employed. Accuracy, Precision and Recall all show improvement
 with the number of features is reduced from 21 to 6, shown in the bar chart
 below [6]:
 
+<!---
 ![](summary_files/score_number_of_features_optim.png)
+--->
+
+<p align="center">
+  <img src="summary_files/score_number_of_features_optim.png" alt="score_number_of_features_optim.png"/>
+</p>
 
 The minimum requirement of the performance is to have both precision and recall
 larger than 0.3, and a blue line is added on the chart representing this
@@ -196,8 +198,7 @@ optimization on the parameters of the decision tree results in the improvement
 on the precision as shown below.
 
 <p align="center">
-  <img src="https://github.com/SamDuan/Fraud-Detection/raw/master/summary_files/
-  score_number_of_features_optim.png" alt="score_number_of_features_optim.png"/>
+  <img src="summary_files/score_tree_optim.png" alt="score_tree_optim.png"/>
 </p>
 
 <!---
