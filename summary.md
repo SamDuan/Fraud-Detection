@@ -193,9 +193,9 @@ After the model is built by the training data set, the performance of this model
  repeated k times, with each of the k subsamples used exactly once as the
  validation data. The k results can then be averaged to produce a single
  estimation." [8]
-   A set of metrics, including precision, recall and accuracy are used and
-   recorded for performance evaluation.
 
+To evaluate the performance of the model, precision, recall and accuracy are
+used. 
 
 
 <!---
