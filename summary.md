@@ -204,18 +204,21 @@ Parameter setting that corresponds to the optimal tree:
 >5. minimum samples split: 2
 
 ## Model Validation and Performance
-After the model is built by the training data set, the performance of this model
- (i.e. the classifier) is estimated by a separate testing dataset. In addition,
- the testing data can serve as check on over-fitting. Here k-fold
- cross-validation is applied to generalize the splitting the data set into
- the training and the testing data set.
- What is k-fold cross-validation? "The original sample is randomly partitioned
- into k equal sized subsamples. Of the k subsamples, a single subsample is
- retained as the validation data for testing the model, and the remaining k − 1
- subsamples are used as training data. The cross-validation process is then
- repeated k times, with each of the k subsamples used exactly once as the
- validation data. The k results can then be averaged to produce a single
- estimation." [8]
+Model validation is critical for building new models, through which we can find
+out how well this model performs, and prevent the overfitting. In a common
+practice, a major part of the dataset is selected to train the model and a small
+ portion of dataset is reserved to test the model. Thus, the model would be
+ tested by the data which it has not seen before, and the estimate would be
+ fairer.
+
+Here k-fold  cross-validation is applied to generalize the splitting the data
+set into  the training and the testing data set. What is k-fold
+cross-validation? "The original sample is randomly partitioned  into k equal
+sized subsamples. Of the k subsamples, a single subsample is  retained as the
+validation data for testing the model, and the remaining k − 1  subsamples are
+used as training data. The cross-validation process is then  repeated k times,
+with each of the k subsamples used exactly once as the  validation data. The k
+results can then be averaged to produce a single  estimation." [8]
 
 To evaluate the performance of the model, precision, recall and accuracy are
 used.
