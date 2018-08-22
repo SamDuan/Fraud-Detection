@@ -125,11 +125,11 @@ using 21 features. The result is formatted in the table below.
 | Precision  |0.29|0.17|
 | Recall  |0.27|0.17|
 
-Since the label is binary, intuitively I would assume logistic regressions shall
-give a better performance even without tuning the parameters. However, it is
-found that decision tree outperforms logistic regression in this case. The
-precision and recall for logistic regression are particularly low. Thus, in the
-following, the decision tree is chosen to tune parameters.
+Since the label is a binary variable, intuitively I would assume logistic
+regressions shall give a better performance even without tuning the parameters.
+However, it is found that decision tree outperforms logistic regression in this
+ case. The precision and recall for logistic regression are particularly low.
+ Thus, in the following, the decision tree is chosen to tune parameters.
 
 ## Tuning parameters
 <!--- pause here, 12:09pm 8/21
@@ -189,7 +189,7 @@ on the precision as shown below.
   <img src="summary_files/score_tree_optim.png" alt="score_tree_optim.png"/>
 </p>
 
-And we visualize the decision tree [7]:
+And the corresponding decision tree looks like this[7]:
 
 <p align="center">
   <img src="summary_files/tree_optim_vis.png" alt="score_number_of_features_optim.png"/>
