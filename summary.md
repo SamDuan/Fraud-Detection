@@ -199,15 +199,15 @@ improvement on the precision shown in the updated bar chart.
 And the corresponding decision tree looks like this [9]:
 
 <p align="center">
-  <img src="summary_files/tree_optim_vis.png" alt="score_number_of_features_optim.png"/>
+  <img src="summary_files/tree_opt.png" alt="tree_opt"/>
 </p>
 
 Parameter setting that corresponds to the optimal tree:
 
 >1. criterion: entropy
->2. maximum depth: 5
->3. maximum leaf nodes: None
->4. minimum samples leaf: 1
+>2. maximum depth: None
+>3. maximum leaf nodes: 5
+>4. minimum samples leaf: 10
 >5. minimum samples split: 2
 
 It shall be noted that for this tree, `fraction_to_poi` is a root node as well
