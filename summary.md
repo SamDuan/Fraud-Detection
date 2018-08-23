@@ -32,7 +32,8 @@ predict.
 
 A brief overview of the dataset:
 1. It includes the information of 146 people.
-2. Among them, there are 18 POI (person of interest) and 128 non-POI, respectively.
+2. Among them, there are 18 POI (person of interest) and 128 non-POI,
+respectively.
 3. For each person, 21 features and corresponding values are available.
 
 ## Outliers investigation
@@ -190,7 +191,8 @@ including:
 5. minimum samples split
 
 A further optimization on the parameters of the decision tree results in the
-improvement on the precision shown in the updated bar chart.
+improvement on the precision as well as the recall seen in the updated bar
+chart.
 
 <p align="center">
   <img src="summary_files/score_tree_optim.png" alt="score_tree_optim.png"/>
@@ -210,9 +212,10 @@ Parameter setting that corresponds to the optimal tree:
 >4. minimum samples leaf: 10
 >5. minimum samples split: 2
 
-It shall be noted that for this tree, `fraction_to_poi` is a root node as well
-as branches nodes. Both `exercised_stock_options` and `shared_receipt_with_poi`
-are closer to the root node.
+It shall be noted that for this tree, it is a really short one. In addition,
+`fraction_to_poi` is a root node, and secondary branches nodes are
+ `total_stock_value` and `shared_receipt_with_poi`. Although the result is
+ simpler than I expected, I do like a simple solution!
 
 ## Model Validation and Performance
 Model validation is critical for building new models, through which we can find
@@ -265,20 +268,19 @@ Lastly, here is the optimal result that I got in this study:
 
 |   |Decision Tree   |
 |---|---|
-| Accuracy  |0.83|
-| Precision  |0.42|
-| Recall  |0.37|
-
+| Accuracy  |0.84|
+| Precision  |0.46|
+| Recall  |0.48|
 
 ## Reflection
 This machine learning project has a quite steep learning curve but overall it is
  a very rewarding experience. I got the hands-on experience on these up-to-date
  machine learning techniques, including outliers detection, feature selection,
 setting up the pipeline, model optimization, model validation and performance
-evaluation. It is quite excited to see when all of these pieces eventually work
-together.
+evaluation. After many struggles, it is quite excited to see when all of these
+pieces eventually work together.
 
-References:
+## References:
 1. https://discussions.udacity.com/t/encore-des-outliers-2nd-last-part-of-the-outliers-section/31747
 2. https://stackoverflow.com/questions/49214001/what-do-these-f-scores-mean-using-selectkbest-feature
 3. http://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection
