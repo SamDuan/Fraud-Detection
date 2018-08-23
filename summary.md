@@ -160,7 +160,7 @@ below [8]:
 
 <p align="center">
   <img src="summary_files/score_number_of_features_optim.png" alt="score_number_of_features_optim.png"/>
-</p
+</p>
 
 The minimum requirement of the performance is to have both precision and recall
 larger than 0.3, and a blue line is added on the chart representing this
@@ -223,18 +223,25 @@ out how well this model performs, and prevent the overfitting. In a common
 practice, a major part of the dataset is selected to train the model and a small
  portion of dataset is reserved to test the model. Thus, the model would be
  tested by the data which it has not seen before, and the estimate would be
- fairer.
+ fairer. I used sklearn's train_test_split function to split 30% of the data
+ into a test set, and 70% into a training set.
 
-Here k-fold  cross-validation is applied to generalize the splitting the data
-set into  the training and the testing data set. What is k-fold
-cross-validation? "The original sample is randomly partitioned into k equal
-sized subsamples. Of the k subsamples, a single subsample is retained as the
-validation data for testing the model, and the remaining k − 1 subsamples are
-used as training data. The cross-validation process is then repeated k times,
-with each of the k subsamples used exactly once as the validation data. The k
-results can then be averaged to produce a single estimation." [10] As mentioned
-previously, the cross-validator is StratifiedShuffleSplit which uses stratified
-sampling.
+After the data is split for training and testing use. A k-fold cross-validation
+is applied to further split the training data set to derive an optimal parameter
+ setting. [10] A picture from the same source explains this nicely.
+
+ <p align="center">
+   <img src="summary_files/cross-val.png" alt="cross-val.png"/>
+ </p>
+
+What is k-fold cross-validation? "The original sample is randomly partitioned
+into k equal sized subsamples. Of the k subsamples, a single subsample is
+retained as the validation data for testing the model, and the remaining k − 1
+subsamples are used as training data. The cross-validation process is then
+repeated k times, with each of the k subsamples used exactly once as the
+validation data. The k results can then be averaged to produce a single
+estimation." [11] As mentioned previously, the cross-validator is
+StratifiedShuffleSplit which uses stratified sampling.
 
 To evaluate the performance of the model, accuracy, precision and recall are
 used.
@@ -246,7 +253,7 @@ Accuracy is not sufficient to fully capture the performance because this is an
 imbalanced classification problem. I have two classes that need to identify 
 — POIs and non-POIs, and non-POIs represents the overwhelming majority of the
 data points over POIs. So even if we assume everyone is non-POIs, the accuracy
-is quite high, which equals to 0.87 (128/146) [11]. However, in this study,
+is quite high, which equals to 0.87 (128/146) [12]. However, in this study,
 the feature that I concern the most is POI. In other words, how accurately the
 model can predict POIs? Two additional metrics are therefore introduced. They
 precision and recall, and their definitions are as follows:
@@ -281,14 +288,16 @@ evaluation. After many struggles, it is quite excited to see when all of these
 pieces eventually work together.
 
 ## References
-1. https://discussions.udacity.com/t/encore-des-outliers-2nd-last-part-of-the-outliers-section/31747
-2. https://stackoverflow.com/questions/49214001/what-do-these-f-scores-mean-using-selectkbest-feature
-3. http://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection
-4. https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118
-5. https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178
-6. http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html
-7. https://stackoverflow.com/questions/33091376/python-what-is-exactly-sklearn-pipeline-pipeline
-8. https://python-graph-gallery.com/11-grouped-barplot/
-9. https://stackoverflow.com/questions/42891148/changing-colors-for-decision-tree-plot-created-using-export-graphviz
-10. https://en.wikipedia.org/wiki/Cross-validation_(statistics)
-11. https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c
+[GitHub](http://github.com)
+1. [Outliers] (https://discussions.udacity.com/t/encore-des-outliers-2nd-last-part-of-the-outliers-section/31747)
+2. [What do these f scores mean?] (https://stackoverflow.com/questions/49214001/what-do-these-f-scores-mean-using-selectkbest-feature)
+3. [Feature Selection at scikit-learn] (http://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection)
+4. [Find out the features by SelectKBest] (https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118)
+5. [How to use pipeline for scaling] (https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178)
+6. [Pipeline at scikit-learn] (http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html)
+7. [Pipeline at stackoverflow] (https://stackoverflow.com/questions/33091376/python-what-is-exactly-sklearn-pipeline-pipeline)
+8. [Grouped barplot] (https://python-graph-gallery.com/11-grouped-barplot/)
+9. [Plot decision tree] (https://stackoverflow.com/questions/42891148/changing-colors-for-decision-tree-plot-created-using-export-graphviz)
+10. [GridSearchCV, testing and training split] (https://discussions.udacity.com/t/gridsearchcv-and-testingtraining-data/36107)
+11. [Cross-Validation at wikipedia] (https://en.wikipedia.org/wiki/Cross-validation_(statistics))
+12. [Beyond accuracy] (https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c)
