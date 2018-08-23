@@ -252,11 +252,11 @@ used.
 Accuracy is not sufficient to fully capture the performance because this is an
 imbalanced classification problem. I have two classes that need to identify 
 — POIs and non-POIs, and non-POIs represents the overwhelming majority of the
-data points over POIs. So even if we assume everyone is non-POIs, the accuracy
-is quite high, which equals to 0.87 (128/146) [12]. However, in this study,
-the feature that I concern the most is POI. In other words, how accurately the
-model can predict POIs? Two additional metrics are therefore introduced. They
-precision and recall, and their definitions are as follows:
+data points over POIs. So even if I assume everyone is non-POIs, I can achieve
+87% accuracy (128/146). However, it is not a very useful model, because it will
+never tell me when a person will commit financial crime, which is what we really
+are interested in. Two additional metrics are therefore introduced, which are
+precision and recall. Their definitions are as follows: [12]
 
 ● Precision = true positive / all predicted positive  
 = # of POIs labeled correctly / # of people labeled as POIs
