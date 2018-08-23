@@ -387,4 +387,4 @@ dtcclf.best_params_
 ### Step 6: Dump the classifier, dataset, and features_list to .pkl files ###
 #############################################################################
 my_dataset = data_dict
-dump_classifier_and_data(clf, my_dataset, features_list)
+dump_classifier_and_data(clf, my_dataset, np.insert(features_selected_list, 0, 'poi'))
