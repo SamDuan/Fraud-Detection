@@ -280,7 +280,7 @@ setting up the pipeline, model optimization, model validation and performance
 evaluation. After many struggles, it is quite excited to see when all of these
 pieces eventually work together.
 
-## References:
+## References
 1. https://discussions.udacity.com/t/encore-des-outliers-2nd-last-part-of-the-outliers-section/31747
 2. https://stackoverflow.com/questions/49214001/what-do-these-f-scores-mean-using-selectkbest-feature
 3. http://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection
