@@ -236,17 +236,25 @@ sampling.
 To evaluate the performance of the model, accuracy, precision and recall are
 used.
 
-● Accuracy = # of items in a class labeled correctly / all items in that class
-In this project,
-accuracy = # of people labeled as POI or non-POI correctly / all the people
+● Accuracy = # of items in a class labeled correctly / all items in that class  
+
+In this project,  
+● Accuracy = # of people labeled as POI or non-POI correctly / all the people
 
 Accuracy is not sufficient to fully capture the performance because this is an
-imbalanced classification problem. We have two classes we need to identify 
+imbalanced classification problem. I have two classes that need to identify 
 — POIs and non-POIs, and non-POIs represents the overwhelming majority of the
 data points over POIs. So even if we assume everyone is non-POIs, the accuracy
-is quite high, which equals to 0.87 (128/146) [11].
+is quite high, which equals to 0.87 (128/146) [11]. However, in this study,
+the feature that I concern the most is POI. In other words, how accurately the
+model can predict POIs? 
 
 
+● Precision = true positive / all predicted positive  
+= # of POIs labeled correctly / # of people labeled as POIs
+
+● Recall = true positive / all actual positive  
+= # of people labeled as POI correctly / # of POIs
 
 
 
