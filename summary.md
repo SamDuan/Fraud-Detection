@@ -246,23 +246,23 @@ StratifiedShuffleSplit which uses stratified sampling.
 To evaluate the performance of the model, accuracy, precision and recall are
 used.
 
-● Accuracy = # of items in a class labeled correctly / all items in that class    
-= # of people labeled as POI or non-POI correctly / all the people
+● __Accuracy__ = *# of items in a class labeled correctly / all items in that class    
+= # of people labeled as POI or non-POI correctly / all the people*
 
 Accuracy is not sufficient to fully capture the performance because this is an
-imbalanced classification problem. I have two classes that need to identify 
-— POIs and non-POIs, and non-POIs represents the overwhelming majority of the
-data points over POIs. So even if I assume everyone is non-POIs, I can achieve
-87% accuracy (128/146). However, it is not a very useful model, because it will
-never tell me when a person will commit financial crime, which is what we really
-are interested in. Two additional metrics are therefore introduced, which are
-precision and recall. Their definitions are as follows: [12]
+*imbalanced classification* problem, because for the two classes that need to
+identify (POIs and non-POIs), non-POIs represents the overwhelming majority of
+the data points over POIs. So even if I assume everyone is non-POIs, I can
+achieve 87% accuracy (128/146). However, it is not a very useful model, because
+it will never tell me when a person will commit financial crime, which is what
+we really are interested in. Two additional metrics are therefore introduced,
+which are precision and recall. Their definitions are as follows: [12]
 
-● Precision = true positive / all predicted positive  
-= # of POIs labeled correctly / # of people labeled as POIs
+● __Precision__ = *true positive / all predicted positive  
+= # of POIs labeled correctly / # of people labeled as POIs*
 
-● Recall = true positive / all actual positive  
-= # of people labeled as POI correctly / # of POIs
+● __Recall__ = *true positive / all actual positive  
+= # of people labeled as POI correctly / # of POIs*
 
 In short, precision express the proportion of the data points our model says
 were relevant actually were relevant, while recall expresses a model’s ability
