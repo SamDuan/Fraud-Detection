@@ -236,10 +236,8 @@ sampling.
 To evaluate the performance of the model, accuracy, precision and recall are
 used.
 
-● Accuracy = # of items in a class labeled correctly / all items in that class  
-
-In this project,  
-● Accuracy = # of people labeled as POI or non-POI correctly / all the people
+● Accuracy = # of items in a class labeled correctly / all items in that class    
+= # of people labeled as POI or non-POI correctly / all the people
 
 Accuracy is not sufficient to fully capture the performance because this is an
 imbalanced classification problem. I have two classes that need to identify 
