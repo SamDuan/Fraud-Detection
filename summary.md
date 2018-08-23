@@ -247,8 +247,11 @@ imbalanced classification problem. I have two classes that need to identify 
 data points over POIs. So even if we assume everyone is non-POIs, the accuracy
 is quite high, which equals to 0.87 (128/146) [11]. However, in this study,
 the feature that I concern the most is POI. In other words, how accurately the
-model can predict POIs? 
+model can predict POIs?
 
+<!---
+Pause here at 10:21pm, 8/22/18
+--->
 
 ● Precision = true positive / all predicted positive  
 = # of POIs labeled correctly / # of people labeled as POIs
