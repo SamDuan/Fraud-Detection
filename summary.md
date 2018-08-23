@@ -31,9 +31,9 @@ In short, features are input; label is output that the model is going to
 predict.
 
 A brief overview of the dataset:
->1. It includes the information of 146 people.
->2. Among them, there are 18 POI (person of interest) and 128 non-POI, respectively.
->3. For each person, 21 features and corresponding values are available.
+1. It includes the information of 146 people.
+2. Among them, there are 18 POI (person of interest) and 128 non-POI, respectively.
+3. For each person, 21 features and corresponding values are available.
 
 ## Outliers investigation
 To identify the outliers, I start looking at the salary and bonus of each
@@ -64,11 +64,11 @@ Five points fall into this category in which either salary is higher than
 $1,000,000 or bonus is more than $5,000,000. Based on the coloration, three of
 these five points are people of interest (red dots). Using a list comprehension,
  the names corresponding to the outliers are:
->1. John J Lavorato
->2. Kenneth L Lay
->3. Timothy N Belden
->4. Jeffrey K Skilling
->5. Mark A Frevert
+1. John J Lavorato
+2. Kenneth L Lay
+3. Timothy N Belden
+4. Jeffrey K Skilling
+5. Mark A Frevert
 
 It turns out that Kenneth L Lay is the former chairman and CEO, Jeffrey Skilling
  is the former president and COO, and Timothy N Belden is the former head of
@@ -83,10 +83,10 @@ other. In other words, they send each other emails at a higher rate than people
 in the population at large who send emails to POIs. Two new features are
 therefore defined to measure the strength of the email connections, which are:
 
->● Percentage of emails from POIs to this person (%) = # emails from POI to this
+● Percentage of emails from POIs to this person (%) = # emails from POI to this
 person / # emails to this person
 
->● Percentage of emails from this person to POIs (%) = # emails from this person
+● Percentage of emails from this person to POIs (%) = # emails from this person
 to POI / # emails from this person
 
 These two features are visualized in the figure below and POIs are red while
@@ -110,10 +110,10 @@ label and features.
 </p>
 
 Few observations:
->1. The difference between the max and min score is roughly an order of magnitude.
->2. The financial features in general have higher ranking than email features.
->3. One of the new features "Percentage of emails from this person to POIs (%)"
->(`fraction_to_poi`) is ranked 5th.
+1. The difference between the max and min score is roughly an order of magnitude.
+2. The financial features in general have higher ranking than email features.
+3. One of the new features "Percentage of emails from this person to POIs (%)"
+(`fraction_to_poi`) is ranked 5th.
 
 ## Algorithms
 Decision Tree and Logistic Regression are set as classifier to build the model
@@ -132,26 +132,34 @@ However, it is found that decision tree outperforms logistic regression in this
  Thus, in the following, the decision tree is chosen to tune parameters.
 
 ## Tuning parameters
-<!--- pause here, 12:09pm 8/21
---->
+Machine learning have parameters that require tuning in order to get the best
+performance. GridCVSearch and Pipeline are used to expedite the parameters
+optimization [4, 5].
 
-GridCVSearch and Pipeline are used to expedite the parameters optimization
-[4, 5].
+GridSearchCV is a way of systematically working through multiple combinations of
+ parameter tunes, cross-validating as it goes to determine which tune gives the
+ best performance. The beauty is that it can work through many combinations in
+ only a couple extra lines of code.
 
-Firstly, I want to figure out the optimal number of features before going into
-the optimization of the algorithms. This step is made easy by GridCVSearch and
-Pipeline as well! Without these two, this would be a very tedious and
-perhaps time-consuming work.
+Pipleline is not an algorithm but a tool encapsulating multiple different
+transformers alongside an estimator into one object that can be cross-validated
+together while setting different parameters. [6, 7]
+
+More specifically, F1 score (the harmonic average of the precision and recall)
+is employed to evaluate the performance and StratifiedShuffleSplit (using
+  stratified sampling) is the cross-validator.
+
+The first parameter to tune is the optimal number of features.
 
 Given the classifier is the decision tree with all the default setting, the
 optimal number of features is found to be 6, when no optimization of the
 decision tree is employed. Accuracy, Precision and Recall all show improvement
 with the number of features is reduced from 21 to 6, shown in the bar chart
-below [6]:
+below [8]:
 
 <p align="center">
   <img src="summary_files/score_number_of_features_optim.png" alt="score_number_of_features_optim.png"/>
-</p>
+</p
 
 The minimum requirement of the performance is to have both precision and recall
 larger than 0.3, and a blue line is added on the chart representing this
@@ -175,21 +183,20 @@ the sixth `shared_receipt_with_poi` is not. In addition, the new feature
 Now, we begin to optimize and tune the parameters for the decision tree,
 including:
 
->1. criterion: gini or entropy
->2. maximum depth
->3. maximum leaf nodes
->4. minimum samples leaf
->5. minimum samples split
+1. criterion: gini or entropy
+2. maximum depth
+3. maximum leaf nodes
+4. minimum samples leaf
+5. minimum samples split
 
-Stratified ShuffleSplit cross-validator is employed as well. A further
-optimization on the parameters of the decision tree results in the improvement
-on the precision as shown below.
+A further optimization on the parameters of the decision tree results in the
+improvement on the precision shown in the updated bar chart.
 
 <p align="center">
   <img src="summary_files/score_tree_optim.png" alt="score_tree_optim.png"/>
 </p>
 
-And the corresponding decision tree looks like this[7]:
+And the corresponding decision tree looks like this [9]:
 
 <p align="center">
   <img src="summary_files/tree_optim_vis.png" alt="score_number_of_features_optim.png"/>
@@ -202,6 +209,10 @@ Parameter setting that corresponds to the optimal tree:
 >3. maximum leaf nodes: None
 >4. minimum samples leaf: 1
 >5. minimum samples split: 2
+
+It shall be noted that for this tree, `fraction_to_poi` is a root node as well
+as branches nodes. Both `exercised_stock_options` and `shared_receipt_with_poi`
+are closer to the root node.
 
 ## Model Validation and Performance
 Model validation is critical for building new models, through which we can find
@@ -218,10 +229,27 @@ sized subsamples. Of the k subsamples, a single subsample is retained as the
 validation data for testing the model, and the remaining k − 1 subsamples are
 used as training data. The cross-validation process is then repeated k times,
 with each of the k subsamples used exactly once as the validation data. The k
-results can then be averaged to produce a single estimation." [8]
+results can then be averaged to produce a single estimation." [10] As mentioned
+previously, the cross-validator is StratifiedShuffleSplit which uses stratified
+sampling.
 
-To evaluate the performance of the model, precision, recall and accuracy are
+To evaluate the performance of the model, accuracy, precision and recall are
 used.
+
+● Accuracy = # of items in a class labeled correctly / all items in that class
+In this project,
+accuracy = # of people labeled as POI or non-POI correctly / all the people
+
+Accuracy is not sufficient to fully capture the performance because this is an
+imbalanced classification problem. We have two classes we need to identify 
+— POIs and non-POIs, and non-POIs represents the overwhelming majority of the
+data points over POIs. So even if we assume everyone is non-POIs, the accuracy
+is quite high, which equals to 0.87 (128/146) [11].
+
+
+
+
+
 <!---
 To do:
 1. go through this writing again
@@ -238,6 +266,9 @@ References:
 >3. http://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection
 >4. https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118
 >5. https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178
->6. https://python-graph-gallery.com/11-grouped-barplot/
->7. https://stackoverflow.com/questions/42891148/changing-colors-for-decision-tree-plot-created-using-export-graphviz
->8. https://en.wikipedia.org/wiki/Cross-validation_(statistics)
+>6. http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html
+>7. https://stackoverflow.com/questions/33091376/python-what-is-exactly-sklearn-pipeline-pipeline
+>8. https://python-graph-gallery.com/11-grouped-barplot/
+>9. https://stackoverflow.com/questions/42891148/changing-colors-for-decision-tree-plot-created-using-export-graphviz
+>10. https://en.wikipedia.org/wiki/Cross-validation_(statistics)
+>11. https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c
