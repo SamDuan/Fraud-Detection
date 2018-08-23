@@ -247,11 +247,8 @@ imbalanced classification problem. I have two classes that need to identify 
 data points over POIs. So even if we assume everyone is non-POIs, the accuracy
 is quite high, which equals to 0.87 (128/146) [11]. However, in this study,
 the feature that I concern the most is POI. In other words, how accurately the
-model can predict POIs?
-
-<!---
-Pause here at 10:21pm, 8/22/18
---->
+model can predict POIs? Two additional metrics are therefore introduced. They
+precision and recall, and their definitions are as follows:
 
 ● Precision = true positive / all predicted positive  
 = # of POIs labeled correctly / # of people labeled as POIs
@@ -259,27 +256,39 @@ Pause here at 10:21pm, 8/22/18
 ● Recall = true positive / all actual positive  
 = # of people labeled as POI correctly / # of POIs
 
+In short, precision express the proportion of the data points our model says
+were relevant actually were relevant, while recall expresses a model’s ability
+to find all the data points of interest in a dataset.
+
+In the bar charts presented earlier, accuracy, precision and recall are all
+included to evaluate the models during the progression of optimization.
+
+Lastly, here is the optimal result that I got in this study:
+
+|   |Decision Tree   |
+|---|---|
+| Accuracy  |0.83|
+| Precision  |0.42|
+| Recall  |0.37|
 
 
-<!---
-To do:
-1. go through this writing again
-2. give each reference a title
-3. submit the project
---->
-<!---
 ## Reflection
---->
+This machine learning project has a quite steep learning curve but overall it is
+ a very rewarding experience. I got the hands-on experience on these up-to-date
+ machine learning techniques, including outliers detection, feature selection,
+setting up the pipeline, model optimization, model validation and performance
+evaluation. It is quite excited to see when all of these pieces eventually work
+together.
 
 References:
->1. https://discussions.udacity.com/t/encore-des-outliers-2nd-last-part-of-the-outliers-section/31747
->2. https://stackoverflow.com/questions/49214001/what-do-these-f-scores-mean-using-selectkbest-feature
->3. http://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection
->4. https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118
->5. https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178
->6. http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html
->7. https://stackoverflow.com/questions/33091376/python-what-is-exactly-sklearn-pipeline-pipeline
->8. https://python-graph-gallery.com/11-grouped-barplot/
->9. https://stackoverflow.com/questions/42891148/changing-colors-for-decision-tree-plot-created-using-export-graphviz
->10. https://en.wikipedia.org/wiki/Cross-validation_(statistics)
->11. https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c
+1. https://discussions.udacity.com/t/encore-des-outliers-2nd-last-part-of-the-outliers-section/31747
+2. https://stackoverflow.com/questions/49214001/what-do-these-f-scores-mean-using-selectkbest-feature
+3. http://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection
+4. https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118
+5. https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178
+6. http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html
+7. https://stackoverflow.com/questions/33091376/python-what-is-exactly-sklearn-pipeline-pipeline
+8. https://python-graph-gallery.com/11-grouped-barplot/
+9. https://stackoverflow.com/questions/42891148/changing-colors-for-decision-tree-plot-created-using-export-graphviz
+10. https://en.wikipedia.org/wiki/Cross-validation_(statistics)
+11. https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c
