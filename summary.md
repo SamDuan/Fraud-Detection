@@ -226,7 +226,7 @@ practice, a major part of the dataset is selected to train the model and a small
  fairer. I used sklearn's train_test_split function to split 30% of the data
  into a test set, and 70% into a training set.
 
-After the data is split for training and testing use. A k-fold cross-validation
+After the data is split for training and testing use. Cross-validation
 is applied to further split the training data set to derive an optimal parameter
  setting. [10] A picture from the same source explains this nicely.
 
