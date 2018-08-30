@@ -37,6 +37,8 @@ respectively.
 3. For each person, 21 features and corresponding values are available.
 
 ## Outliers investigation
+<!--- Need to do a better job here to get a better fitting result
+--->
 To identify the outliers, I start looking at the salary and bonus of each
 person in this dataset. From the scatter plot, I found that a person's salary
 is generally proportion to his/her bonus. In addition, POIs and non-POIs are
