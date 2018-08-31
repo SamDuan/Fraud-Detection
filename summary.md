@@ -153,12 +153,12 @@ In scikit-learn, GridCVSearch is available for this purpose. As indicated by its
 Cross-validation is to reserve part of data to evaluate the model. Here
 StratifiedShuffleSplit is cross-validator, meaning samples are first shuffled
 and then split into a pair of train and validation sets. Note that here is
-validation set rather than testing set, since the testing set has been reserved
-earlier for the performance evaluation after parameters optimization (see the
-  figure below).
+validation set rather than testing set, since the testing set is for the
+performance evaluation after parameters optimization (see the figure below) [5].
+This will be discussed in more details in Model Validation and Performance.
 
 <p align="center">
-  <img src="summary_files/train-validation-test.png" alt="train-val-test.png"/>
+  <img src="summary_files/cross-val.png" alt="cross-val"/>
 </p>
 
 For each validation, F1 score (the harmonic average of the precision and recall)
@@ -170,17 +170,17 @@ performance. The set of parameters giving the highest F1 score is then selected
 as the optimal parameters for the model.
 
 In addition to GridCVSearch, Pipeline is employed to expedite the parameters
-optimization [5, 6]. Pipleline is not an algorithm but a tool encapsulating
+optimization [6, 7]. Pipleline is not an algorithm but a tool encapsulating
 multiple different transformers alongside an estimator into one object that can
 be cross-validated together while setting different parameters.
 
-The first parameter to tune is the optimal number of features.[7]
+The first parameter to tune is the optimal number of features.[8]
 
 Given the classifier is the decision tree with all the default setting, the
-optimal number of features is found to be 6, when no optimization of the
+optimal number of features is found to be 10, when no optimization of the
 decision tree is employed. Accuracy, Precision and Recall all show improvement
-with the number of features is reduced from 21 to 6, shown in the bar chart
-below [8]:
+with the number of features is reduced from 21 to 10, shown in the bar chart
+below [9]:
 
 <p align="center">
   <img src="summary_files/score_number_of_features_optim.png" alt="score_number_of_features_optim.png"/>
@@ -188,20 +188,24 @@ below [8]:
 
 The minimum requirement of the performance is to have both precision and recall
 larger than 0.3, and a blue line is added on the chart representing this
-threshold. Accuracy improves slightly: 0.82 to 0.83, but both precision and
-recall improve quite a bit. Precision increases from 0.34 to 0.41, and recall
-from 0.33 to 0.41. Both models' performance have passed the threshold before
+threshold. Accuracy improves slightly: 0.82 to 0.85, but both precision and
+recall improve quite a bit. Precision increases from 0.34 to 0.46, and recall
+from 0.33 to 0.46. Both models' performance have passed the threshold before
 the parameter of the decision tree is completed!
 
-The 6 selected features are (in the order of their F-value):
+The 10 selected features are (in the order of their F-value):
 >1. `bonus`
->2. `salary`
->3. `fraction_to_poi`
->4. `deferred_income`
->5. `shared_receipt_with_poi`
->6. `total_payments`
+>2. `exercised_stock_options`
+>3. `total_stock_value`
+>4. `salary`
+>5. `fraction_to_poi`
+>6. `deferred_income`
+>7. `long_term_incentive`
+>8. `from_poi_to_this_person`
+>9. `shared_receipt_with_poi`
+>10. `total_payments`
 
-Note that the selected are _not_ the top six in F-value ranking. In addition,
+Note that the selected features are the top ten in F-value ranking. In addition,
 the new feature `fraction_to_poi` is included in this selection.
 
 Now, we begin to optimize and tune the parameters for the decision tree,
@@ -241,10 +245,9 @@ Parameter setting that corresponds to the optimal tree:
 >4. minimum samples leaf: 1
 >5. minimum samples split: 2
 
-It shall be noted that for this tree, it is a really short one. In addition,
-`fraction_to_poi` is a root node, and secondary branches nodes are
- `total_stock_value` and `shared_receipt_with_poi`. Although the result is
- simpler than I expected, I do like a simple solution!
+In this tree, `fraction_to_poi` is a root node, and secondary branches nodes are
+ `total_stock_value` and `shared_receipt_with_poi`. Contrary to what I guess,
+ the structure of the tree does not follow the order of their F-value.
 
 ## Model Validation and Performance
 Model validation is critical for building new models, through which we can find
@@ -252,25 +255,20 @@ out how well this model performs, and prevent the overfitting. In a common
 practice, a major part of the dataset is selected to train the model and a small
  portion of dataset is reserved to test the model. Thus, the model would be
  tested by the data which it has not seen before, and the estimate would be
- fairer. I used sklearn's train_test_split function to split 30% of the data
- into a test set, and 70% into a training set.
-
-After the data is split for training and testing use. Cross-validation
+ fairer. After the data is split for training and testing use. Cross-validation
 is applied to further split the training data set to derive an optimal parameter
- setting. [10] A picture from the same source explains this nicely.
+ setting.
 
- <p align="center">
-   <img src="summary_files/cross-val.png" alt="cross-val.png"/>
- </p>
+ In this project, since the data set is small, all of data is used to select
+ algorithms parameters (see snippet below) as well as to access the model's
+ performance.StratifiedShuffleSplit is used to produce randomized splits for
+ both validation and testing (see the figure in Tuning parameters).
 
-What is k-fold cross-validation? "The original sample is randomly partitioned
-into k equal sized subsamples. Of the k subsamples, a single subsample is
-retained as the validation data for testing the model, and the remaining k − 1
-subsamples are used as training data. The cross-validation process is then
-repeated k times, with each of the k subsamples used exactly once as the
-validation data. The k results can then be averaged to produce a single
-estimation." [11] As mentioned previously, the cross-validator is
-StratifiedShuffleSplit which uses stratified sampling.
+```python
+sss = StratifiedShuffleSplit(random_state=0)
+dtcclf = GridSearchCV(pipe, param_grid, scoring = 'f1', cv = sss)
+dtcclf.fit(features, labels))
+```
 
 To evaluate the performance of the model, accuracy, precision and recall are
 used.
@@ -285,7 +283,7 @@ the data points over POIs. So even if I assume everyone is non-POIs, I can
 achieve 87% accuracy (128/146). However, it is not a very useful model, because
 it will never tell me when a person will commit financial crime, which is what
 we really are interested in. Two additional metrics are therefore introduced,
-which are precision and recall. Their definitions are as follows: [12]
+which are precision and recall. Their definitions are as follows: [11]
 
 ● __Precision__ = *true positive / all predicted positive  
 = # of POIs labeled correctly / # of people labeled as POIs*
@@ -304,9 +302,9 @@ Lastly, here is the optimal result that I got in this study:
 
 |   |Decision Tree   |
 |---|---|
-| Accuracy  |0.84|
-| Precision  |0.46|
-| Recall  |0.48|
+| Accuracy  |0.86|
+| Precision  |0.51|
+| Recall  |0.47|
 
 ## Reflection
 This machine learning project has a quite steep learning curve but overall it is
@@ -321,11 +319,10 @@ pieces eventually work together.
 2. [What do these f scores mean?](https://stackoverflow.com/questions/49214001/what-do-these-f-scores-mean-using-selectkbest-feature)
 3. [Feature Selection at scikit-learn](http://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection)
 4. [How to tune algorithm parameters](https://machinelearningmastery.com/how-to-tune-algorithm-parameters-with-scikit-learn/)
-5. [How to use pipeline for scaling](https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178)
-6. [Pipeline at stackoverflow](https://stackoverflow.com/questions/33091376/python-what-is-exactly-sklearn-pipeline-pipeline)
-7. [Find out the features by SelectKBest](https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118)
-8. [Grouped barplot](https://python-graph-gallery.com/11-grouped-barplot/)
-9. [Plot decision tree](https://stackoverflow.com/questions/42891148/changing-colors-for-decision-tree-plot-created-using-export-graphviz)
-10. [GridSearchCV, testing and training split](https://discussions.udacity.com/t/gridsearchcv-and-testingtraining-data/36107)
-11. [Cross-Validation at wikipedia](https://en.wikipedia.org/wiki/Cross-validation_(statistics))
-12. [Beyond accuracy](https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c)
+5. [GridSearchCV, testing and training split](https://discussions.udacity.com/t/gridsearchcv-and-testingtraining-data/36107)
+6. [How to use pipeline for scaling](https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178)
+7. [Pipeline at stackoverflow](https://stackoverflow.com/questions/33091376/python-what-is-exactly-sklearn-pipeline-pipeline)
+8. [Find out the features by SelectKBest](https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118)
+9. [Grouped barplot](https://python-graph-gallery.com/11-grouped-barplot/)
+10. [Plot decision tree](https://stackoverflow.com/questions/42891148/changing-colors-for-decision-tree-plot-created-using-export-graphviz)
+11. [Beyond accuracy](https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c)
