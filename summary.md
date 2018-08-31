@@ -6,7 +6,9 @@ resulting Federal investigation, a significant amount of typically confidential
  emails and detailed financial data for top executives.
  In this project, based on the public Enron financial and email dataset, I built
   machine learning algorithms to identify Enron Employees who may have committed
-   fraud (who are called persons of interest, POI, in the following).
+   fraud, which is an intentional act of deception involving financial
+   transactions for purpose of personal gain.[1] The people committed fraud who
+   are called persons of interest, POI, in the following.
 
 More specifically, a dataset of persons and features associated with them is
 given, and then the goal is to build a classifier algorithm around it that can
@@ -49,7 +51,7 @@ top right corner appears to be unusually distant from the rest of the data.
   <img src="summary_files/outlier-fig1.png"/>
 </p>
 
-Who is this person? Using a list comprehension [1], "total" is
+Who is this person? Using a list comprehension [2], "total" is
 identified to be this distinct observation! It is neither a POI or non-POI.
 Rather, it is likely a spreadsheet quirk since the spreadsheet added up all the
  data points automatically as it was generated.
@@ -104,7 +106,7 @@ features, SelectKBest (a univariate feature selection) is used. Note that
 not used either since this feature is not clearly defined. In addition,
 MinMaxScaler is deployed to scale each feature to the range between 0 and 1, and
 SelectKBest ranks the features according to f_classif, which represents ANOVA
-F-value (the linear dependency between each feature and label) [2, 3] between
+F-value (the linear dependency between each feature and label) [3, 4] between
 label and features.
 
 <p align="center">
@@ -137,7 +139,7 @@ However, it is found that decision tree outperforms logistic regression in this
 Machine learning models are parameterized so that their behavior can be tuned
 for a given problem. Through the search of the optimal parameters for each
 model, the machine learning algorithm is able to achieve its best performance
-[4]. It can been seen that generic classifiers built for a quick test
+[5]. It can been seen that generic classifiers built for a quick test
 in the previous section do not perform well. It reinforces the significance
 of tuning parameters.
 
@@ -154,7 +156,7 @@ Cross-validation is to reserve part of data to evaluate the model. Here
 StratifiedShuffleSplit is cross-validator, meaning samples are first shuffled
 and then split into a pair of train and validation sets. Note that here is
 validation set rather than testing set, since the testing set is for the
-performance evaluation after parameters optimization (see the figure below) [5].
+performance evaluation after parameters optimization (see the figure below) [6].
 This will be discussed in more details in Model Validation and Performance.
 
 <p align="center">
@@ -170,17 +172,17 @@ performance. The set of parameters giving the highest F1 score is then selected
 as the optimal parameters for the model.
 
 In addition to GridCVSearch, Pipeline is employed to expedite the parameters
-optimization [6, 7]. Pipleline is not an algorithm but a tool encapsulating
+optimization [7, 8]. Pipleline is not an algorithm but a tool encapsulating
 multiple different transformers alongside an estimator into one object that can
 be cross-validated together while setting different parameters.
 
-The first parameter to tune is the optimal number of features.[8]
+The first parameter to tune is the optimal number of features.[9]
 
 Given the classifier is the decision tree with all the default setting, the
 optimal number of features is found to be 10, when no optimization of the
 decision tree is employed. Accuracy, Precision and Recall all show improvement
 with the number of features is reduced from 21 to 10, shown in the bar chart
-below [9]:
+below [10]:
 
 <p align="center">
   <img src="summary_files/score_number_of_features_optim.png" alt="score_number_of_features_optim.png"/>
@@ -232,7 +234,7 @@ chart.
   <img src="summary_files/score_tree_optim.png" alt="score_tree_optim.png"/>
 </p>
 
-And the corresponding decision tree looks like this [9]:
+And the corresponding decision tree looks like this [11]:
 
 <p align="center">
   <img src="summary_files/poi_tree.png" alt="tree"/>
@@ -262,8 +264,10 @@ is applied to further split the training data set to derive an optimal parameter
 
  In this project, since the data set is small, all of data is used to select
  algorithms parameters (see snippet below) as well as to access the model's
- performance.StratifiedShuffleSplit is used to produce randomized splits for
- both validation and testing (see the figure in Tuning parameters).
+ performance. In other words, features and labels are used rather than
+ features_train, labels_train in building the models. StratifiedShuffleSplit is
+ used to produce randomized splits for both validation and testing (see the
+   figure in Tuning parameters).
 
 ```python
 sss = StratifiedShuffleSplit(random_state=0)
@@ -284,7 +288,7 @@ the data points over POIs. So even if I assume everyone is non-POIs, I can
 achieve 87% accuracy (128/146). However, it is not a very useful model, because
 it will never tell me when a person will commit financial crime, which is what
 we really are interested in. Two additional metrics are therefore introduced,
-which are precision and recall. Their definitions are as follows: [11]
+which are precision and recall. Their definitions are as follows: [12]
 
 ● __Precision__ = *true positive / all predicted positive  
 = # of POIs labeled correctly / # of people labeled as POIs*
@@ -316,14 +320,15 @@ evaluation. After many struggles, it is quite excited to see when all of these
 pieces eventually work together.
 
 ## References
-1. [Outliers](https://discussions.udacity.com/t/encore-des-outliers-2nd-last-part-of-the-outliers-section/31747)
-2. [What do these f scores mean?](https://stackoverflow.com/questions/49214001/what-do-these-f-scores-mean-using-selectkbest-feature)
-3. [Feature Selection at scikit-learn](http://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection)
-4. [How to tune algorithm parameters](https://machinelearningmastery.com/how-to-tune-algorithm-parameters-with-scikit-learn/)
-5. [GridSearchCV, testing and training split](https://discussions.udacity.com/t/gridsearchcv-and-testingtraining-data/36107)
-6. [How to use pipeline for scaling](https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178)
-7. [Pipeline at stackoverflow](https://stackoverflow.com/questions/33091376/python-what-is-exactly-sklearn-pipeline-pipeline)
-8. [Find out the features by SelectKBest](https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118)
-9. [Grouped barplot](https://python-graph-gallery.com/11-grouped-barplot/)
-10. [Plot decision tree](https://stackoverflow.com/questions/42891148/changing-colors-for-decision-tree-plot-created-using-export-graphviz)
-11. [Beyond accuracy](https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c)
+1. [What is Financial Fraud?](http://www.bnm.gov.my/microsites/fraudalert/01_what.htm)
+2. [Outliers](https://discussions.udacity.com/t/encore-des-outliers-2nd-last-part-of-the-outliers-section/31747)
+3. [What do these f scores mean?](https://stackoverflow.com/questions/49214001/what-do-these-f-scores-mean-using-selectkbest-feature)
+4. [Feature Selection at scikit-learn](http://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection)
+5. [How to tune algorithm parameters](https://machinelearningmastery.com/how-to-tune-algorithm-parameters-with-scikit-learn/)
+6. [GridSearchCV, testing and training split](https://discussions.udacity.com/t/gridsearchcv-and-testingtraining-data/36107)
+7. [How to use pipeline for scaling](https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178)
+8. [Pipeline at stackoverflow](https://stackoverflow.com/questions/33091376/python-what-is-exactly-sklearn-pipeline-pipeline)
+9. [Find out the features by SelectKBest](https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118)
+10. [Grouped barplot](https://python-graph-gallery.com/11-grouped-barplot/)
+11. [Plot decision tree](https://stackoverflow.com/questions/42891148/changing-colors-for-decision-tree-plot-created-using-export-graphviz)
+12. [Beyond accuracy](https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c)
