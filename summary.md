@@ -207,11 +207,17 @@ the new feature `fraction_to_poi` is included in this selection.
 Now, we begin to optimize and tune the parameters for the decision tree,
 including:
 
-1. criterion: gini or entropy
-2. maximum depth
-3. maximum leaf nodes
-4. minimum samples leaf
-5. minimum samples split
+1. criterion: gini or entropy (The function to measure the quality of a split.
+   “gini” for the Gini impurity and “entropy” for the information gain.)
+2. maximum depth: none, 2, 5, or 10 (The maximum depth of the tree. If none,
+  then nodes are expanded until all leaves are pure or until all leaves contain
+  less than min_samples_split samples. Default=none)
+3. maximum leaf nodes: none, 5, 10, or 20 (If none then unlimited number of leaf
+   nodes.)
+4. minimum samples leaf: 1, 5, 10 (The minimum number of samples required to be
+  at a leaf node. Default=1)
+5. minimum samples split: 2, 10, 20 (The minimum number of samples required to
+  split an internal node. Default=2)
 
 A further optimization on the parameters of the decision tree results in the
 improvement on the precision as well as the recall seen in the updated bar
@@ -224,15 +230,15 @@ chart.
 And the corresponding decision tree looks like this [9]:
 
 <p align="center">
-  <img src="summary_files/tree_opt.png" alt="tree_opt"/>
+  <img src="summary_files/poi_tree.png" alt="tree"/>
 </p>
 
 Parameter setting that corresponds to the optimal tree:
 
 >1. criterion: entropy
->2. maximum depth: None
->3. maximum leaf nodes: 5
->4. minimum samples leaf: 10
+>2. maximum depth: 10
+>3. maximum leaf nodes: none
+>4. minimum samples leaf: 1
 >5. minimum samples split: 2
 
 It shall be noted that for this tree, it is a really short one. In addition,
