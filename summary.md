@@ -135,6 +135,12 @@ However, it is found that decision tree outperforms logistic regression in this
  Thus, in the following, the decision tree is chosen to tune parameters.
 
 ## Tuning parameters
+Machine learning models are parameterized so that their behavior can be tuned
+for a given problem. After building generic classifiers for a quick test on
+their performance, I am looking for a set of parameters for the decision tree
+algorithm on this poi identification problem. The goal is to improve algorithm
+performance.
+
 Machine learning have parameters that require tuning in order to get the best
 performance. GridCVSearch and Pipeline are used to expedite the parameters
 optimization [4, 5].
