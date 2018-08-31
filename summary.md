@@ -125,7 +125,7 @@ using 21 features. The result is formatted in the table below.
 |---|---|---|
 |Accuracy|0.82|0.79|
 |Precision|0.34|0.21|
-|Recall|0.33|0.19|
+|Recall|0.32|0.19|
 
 Since the label is a binary variable, intuitively I would assume logistic
 regressions shall give a better performance even without tuning the parameters.
@@ -188,22 +188,21 @@ below [8]:
 
 The minimum requirement of the performance is to have both precision and recall
 larger than 0.3, and a blue line is added on the chart representing this
-threshold. Accuracy improves slightly: 0.81 to 0.82, but both precision and
-recall improve quite a bit. Precision increases from 0.29 to 0.37, and recall
-from 0.27 to 0.39. The model performance has passed the threshold before
-the parameter of the decision tree is optimized!
+threshold. Accuracy improves slightly: 0.82 to 0.83, but both precision and
+recall improve quite a bit. Precision increases from 0.34 to 0.41, and recall
+from 0.33 to 0.41. Both models' performance have passed the threshold before
+the parameter of the decision tree is completed!
 
-The 6 selected features are:
->1. `exercised_stock_options`
->2. `total_stock_value`
->3. `bonus`
->4. `salary`
->5. `fraction_to_poi`
->6. `shared_receipt_with_poi`
+The 6 selected features are (in the order of their F-value):
+>1. `bonus`
+>2. `salary`
+>3. `fraction_to_poi`
+>4. `deferred_income`
+>5. `shared_receipt_with_poi`
+>6. `total_payments`
 
-Note that the first five selected are the top five in F-value ranking, while
-the sixth `shared_receipt_with_poi` is not. In addition, the new feature
-`fraction_to_poi` is included in this selection.
+Note that the selected are _not_ the top six in F-value ranking. In addition,
+the new feature `fraction_to_poi` is included in this selection.
 
 Now, we begin to optimize and tune the parameters for the decision tree,
 including:
