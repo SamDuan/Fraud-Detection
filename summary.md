@@ -7,7 +7,7 @@ resulting Federal investigation, a significant amount of typically confidential
  In this project, based on the public Enron financial and email dataset, I built
   machine learning algorithms to identify Enron Employees who may have committed
    fraud, which is an intentional act of deception involving financial
-   transactions for purpose of personal gain.[1] The people committed fraud who
+   transactions for purpose of personal gain [1].  The people committed fraud who
    are called persons of interest, POI, in the following.
 
 More specifically, a dataset of persons and features associated with them is
