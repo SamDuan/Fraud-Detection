@@ -136,31 +136,46 @@ However, it is found that decision tree outperforms logistic regression in this
 
 ## Tuning parameters
 Machine learning models are parameterized so that their behavior can be tuned
-for a given problem. After building generic classifiers for a quick test on
-their performance, I am looking for a set of parameters for the decision tree
-algorithm on this poi identification problem. The goal is to improve algorithm
-performance. [4]
+for a given problem. Through the search of the optimal parameters for each
+model, the machine learning algorithm is able to achieve its best performance
+[4]. It can been seen that generic classifiers that were built for a quick test
+in the previous section do not perform well. It reinforces the significance
+of tuning parameters.
 
-Here I used a grid search for parameter tuning which will methodically build an
- evaluate a model for each combination of algorithm parameters specified in a grid.  
-Machine learning have parameters that require tuning in order to get the best
-performance. GridCVSearch and Pipeline are used to expedite the parameters
-optimization [4, 5].
+Here I used a grid search for parameter tuning which will methodically build and
+ evaluate a model for each combination of algorithm parameters specified in a
+ grid.  
 
-GridSearchCV is a way of systematically working through multiple combinations of
- parameter tunes, cross-validating as it goes to determine which tune gives the
- best performance. The beauty is that it can work through many combinations in
- only a couple extra lines of code.
+In scikit-learn, GridCVSearch is available for parameters optimization. As
+indicated by its name, it is comprised of grid search and cross-validation.
+First of all, I determine a set of parameter values which are stored on a grid
+and each set would be used to train the model.
 
-Pipleline is not an algorithm but a tool encapsulating multiple different
-transformers alongside an estimator into one object that can be cross-validated
-together while setting different parameters. [6, 7]
+Cross-validation is when I reserve part of data to evaluate the model. Here
+StratifiedShuffleSplit is cross-validator and samples thus are first shuffled
+and then split into a pair of train and validation sets. Note that here is
+validation set rather than testing set, since the testing set has been reserved
+earlier for the performance evaluation after parameters optimization (see the
+  figure below).
 
-More specifically, F1 score (the harmonic average of the precision and recall)
-is employed to evaluate the performance and StratifiedShuffleSplit (using
-  stratified sampling) is the cross-validator.
+<p align="center">
+  <img src="summary_files/train-validation-test.png" alt="train-val-test.png"/>
+</p>
 
-The first parameter to tune is the optimal number of features.
+For each validation, F1 score (the harmonic average of the precision and recall)
+is employed to evaluate the performance of a given parameters values described
+in a grid using the validation dataset, and the averages of all the F1
+scores represents the performance of this set of parameters. Then another set of
+parameters is fed into the classifier and cross-validation determines its
+performance. The set of parameters giving the highest F1 score is then selected
+as the optimal parameters for the model.
+
+In addition to GridCVSearch, Pipeline is employed to expedite the parameters
+optimization [5, 6]. Pipleline is not an algorithm but a tool encapsulating
+multiple different transformers alongside an estimator into one object that can
+be cross-validated together while setting different parameters.
+
+The first parameter to tune is the optimal number of features.[7]
 
 Given the classifier is the decision tree with all the default setting, the
 optimal number of features is found to be 6, when no optimization of the
@@ -301,12 +316,10 @@ pieces eventually work together.
 1. [Outliers](https://discussions.udacity.com/t/encore-des-outliers-2nd-last-part-of-the-outliers-section/31747)
 2. [What do these f scores mean?](https://stackoverflow.com/questions/49214001/what-do-these-f-scores-mean-using-selectkbest-feature)
 3. [Feature Selection at scikit-learn](http://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection)
-4. [How to tune alrorithm parameters](https://machinelearningmastery.com/how-to-tune-algorithm-parameters-with-scikit-learn/)
-
-4. [Find out the features by SelectKBest](https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118)
+4. [How to tune algorithm parameters](https://machinelearningmastery.com/how-to-tune-algorithm-parameters-with-scikit-learn/)
 5. [How to use pipeline for scaling](https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178)
-6. [Pipeline at scikit-learn](http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html)
-7. [Pipeline at stackoverflow](https://stackoverflow.com/questions/33091376/python-what-is-exactly-sklearn-pipeline-pipeline)
+6. [Pipeline at stackoverflow](https://stackoverflow.com/questions/33091376/python-what-is-exactly-sklearn-pipeline-pipeline)
+7. [Find out the features by SelectKBest](https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118)
 8. [Grouped barplot](https://python-graph-gallery.com/11-grouped-barplot/)
 9. [Plot decision tree](https://stackoverflow.com/questions/42891148/changing-colors-for-decision-tree-plot-created-using-export-graphviz)
 10. [GridSearchCV, testing and training split](https://discussions.udacity.com/t/gridsearchcv-and-testingtraining-data/36107)
