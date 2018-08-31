@@ -76,9 +76,8 @@ these five points are people of interest (red dots). Using a list comprehension,
 It turns out that Kenneth L Lay is the former chairman and CEO, Jeffrey Skilling
  is the former president and COO, and Timothy N Belden is the former head of
  trading in Enron. Three of them are definitely people of interest. However, the
-  other two people, i.e., John J Lavorato and Mark A  Frevert seem to be
-  outliers and we may remove them to improve the modeling  accuracy if
-  necessary.
+  other two people, i.e., John J Lavorato and Mark A Frevert seem to be
+  outliers and thus they are removed to improve the modeling  accuracy.
 
 ## Feature selection and optimization
 As POIs, they might have particularly strong email connections between each
@@ -122,11 +121,11 @@ Few observations:
 Decision Tree and Logistic Regression are set as classifier to build the model
 using 21 features. The result is formatted in the table below.
 
-|   |Decision Tree   | Logistic Regression  |
+|   |Decision Tree|Logistic Regression|
 |---|---|---|
-| Accuracy  |0.81|0.78|
-| Precision  |0.29|0.17|
-| Recall  |0.27|0.17|
+|Accuracy|0.81|0.78|
+|Precision|0.29|0.17|
+|Recall|0.27|0.17|
 
 Since the label is a binary variable, intuitively I would assume logistic
 regressions shall give a better performance even without tuning the parameters.
@@ -138,21 +137,21 @@ However, it is found that decision tree outperforms logistic regression in this
 Machine learning models are parameterized so that their behavior can be tuned
 for a given problem. Through the search of the optimal parameters for each
 model, the machine learning algorithm is able to achieve its best performance
-[4]. It can been seen that generic classifiers that were built for a quick test
+[4]. It can been seen that generic classifiers built for a quick test
 in the previous section do not perform well. It reinforces the significance
 of tuning parameters.
 
-Here I used a grid search for parameter tuning which will methodically build and
- evaluate a model for each combination of algorithm parameters specified in a
- grid.  
+Here I used a grid search for parameter tuning which will systematically build
+and  evaluate a model for each combination of algorithm parameters specified in
+a grid.  
 
-In scikit-learn, GridCVSearch is available for parameters optimization. As
-indicated by its name, it is comprised of grid search and cross-validation.
-First of all, I determine a set of parameter values which are stored on a grid
-and each set would be used to train the model.
+In scikit-learn, GridCVSearch is available for this purpose. As indicated by its
+ name, it is comprised of grid search and cross-validation. First of all, I
+ determine a set of parameter values which are stored on a grid and each set
+ would be used to train the model.
 
-Cross-validation is when I reserve part of data to evaluate the model. Here
-StratifiedShuffleSplit is cross-validator and samples thus are first shuffled
+Cross-validation is to reserve part of data to evaluate the model. Here
+StratifiedShuffleSplit is cross-validator, meaning samples are first shuffled
 and then split into a pair of train and validation sets. Note that here is
 validation set rather than testing set, since the testing set has been reserved
 earlier for the performance evaluation after parameters optimization (see the
