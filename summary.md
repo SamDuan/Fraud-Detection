@@ -7,8 +7,8 @@ resulting Federal investigation, a significant amount of typically confidential
  In this project, based on the public Enron financial and email dataset, I built
   machine learning algorithms to identify Enron Employees who may have committed
    fraud, which is an intentional act of deception involving financial
-   transactions for purpose of personal gain [1].  The people committed fraud who
-   are called persons of interest, POI, in the following.
+   transactions for purpose of personal gain [1]. The people committed fraud are
+    called persons of interest, POI, in the following.
 
 More specifically, a dataset of persons and features associated with them is
 given, and then the goal is to build a classifier algorithm around it that can
@@ -39,8 +39,6 @@ respectively.
 3. For each person, 21 features and corresponding values are available.
 
 ## Outliers investigation
-<!--- Need to do a better job here to get a better fitting result
---->
 To identify the outliers, I start looking at the salary and bonus of each
 person in this dataset. From the scatter plot, I found that a person's salary
 is generally proportion to his/her bonus. In addition, POIs and non-POIs are
@@ -78,7 +76,7 @@ these five points are people of interest (red dots). Using a list comprehension,
 It turns out that Kenneth L Lay is the former chairman and CEO, Jeffrey Skilling
  is the former president and COO, and Timothy N Belden is the former head of
  trading in Enron. Three of them are definitely people of interest. However, the
-  other two people, i.e., John J Lavorato and Mark A Frevert seem to be
+  other two people, i.e., John J Lavorato and Mark A Frevert are likely
   outliers and thus they are removed to improve the modeling  accuracy.
 
 ## Feature selection and optimization
@@ -250,7 +248,8 @@ Parameter setting that corresponds to the optimal tree:
 
 In this tree, `fraction_to_poi` is a root node, and secondary branches nodes are
  `total_stock_value` and `shared_receipt_with_poi`. Contrary to what I guess,
- the structure of the tree does not follow the order of their F-value.
+ the sequence from the root node to the leaf nodes does not follow the order of
+ their F-value.
 
 ## Model Validation and Performance
 Model validation is critical for building new models, through which we can find
@@ -264,16 +263,22 @@ is applied to further split the training data set to derive an optimal parameter
 
  In this project, since the data set is small, all of data is used to select
  algorithms parameters (see snippet below) as well as to access the model's
- performance. In other words, features and labels are used rather than
- features_train, labels_train in building the models. StratifiedShuffleSplit is
- used to produce randomized splits for both validation and testing (see the
-   figure in Tuning parameters).
+ performance. In other words, `features` and `labels` are used rather than
+ `features_train`, `labels_train` in training the models and validation.
+ StratifiedShuffleSplit is used to produce randomized splits for both
+ validation and testing (see the figure in Tuning parameters).
 
 ```python
 sss = StratifiedShuffleSplit(random_state=0)
 dtcclf = GridSearchCV(pipe, param_grid, scoring = 'f1', cv = sss)
 dtcclf.fit(features, labels))
 ```
+
+Since this project deals with an this is an *imbalanced classification* (POIs
+  and non-POIs classes exhibit a large imbalance in the distribution.) It is
+  advantageous to use stratified sampling as implemented in
+  StratifiedShuffleSplit to ensure that relative class frequencies is
+  approximately preserved in each train and validation fold. [12]
 
 To evaluate the performance of the model, accuracy, precision and recall are
 used.
@@ -282,13 +287,12 @@ used.
 = # of people labeled as POI or non-POI correctly / all the people*
 
 Accuracy is not sufficient to fully capture the performance because this is an
-*imbalanced classification* problem, because for the two classes that need to
-identify (POIs and non-POIs), non-POIs represents the overwhelming majority of
-the data points over POIs. So even if I assume everyone is non-POIs, I can
-achieve 87% accuracy (128/146). However, it is not a very useful model, because
-it will never tell me when a person will commit financial crime, which is what
-we really are interested in. Two additional metrics are therefore introduced,
-which are precision and recall. Their definitions are as follows: [12]
+imbalanced classification problem. So even if I assume everyone is non-POIs, I
+can achieve 87% accuracy (128/146). However, it is not a very useful model,
+because it will never tell me when a person will commit financial crime, which
+is what we really are interested in. Two additional metrics are therefore
+introduced, which are precision and recall. Their definitions are as follows:
+[13]
 
 ● __Precision__ = *true positive / all predicted positive  
 = # of POIs labeled correctly / # of people labeled as POIs*
@@ -331,4 +335,5 @@ pieces eventually work together.
 9. [Find out the features by SelectKBest](https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118)
 10. [Grouped barplot](https://python-graph-gallery.com/11-grouped-barplot/)
 11. [Plot decision tree](https://stackoverflow.com/questions/42891148/changing-colors-for-decision-tree-plot-created-using-export-graphviz)
-12. [Beyond accuracy](https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c)
+12. [Cross-Validation at scikit-learn](http://scikit-learn.org/stable/modules/cross_validation.html)
+13. [Beyond accuracy](https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c)
