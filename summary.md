@@ -139,8 +139,10 @@ Machine learning models are parameterized so that their behavior can be tuned
 for a given problem. After building generic classifiers for a quick test on
 their performance, I am looking for a set of parameters for the decision tree
 algorithm on this poi identification problem. The goal is to improve algorithm
-performance.
+performance. [4]
 
+Here I used a grid search for parameter tuning which will methodically build an
+ evaluate a model for each combination of algorithm parameters specified in a grid.  
 Machine learning have parameters that require tuning in order to get the best
 performance. GridCVSearch and Pipeline are used to expedite the parameters
 optimization [4, 5].
@@ -299,6 +301,8 @@ pieces eventually work together.
 1. [Outliers](https://discussions.udacity.com/t/encore-des-outliers-2nd-last-part-of-the-outliers-section/31747)
 2. [What do these f scores mean?](https://stackoverflow.com/questions/49214001/what-do-these-f-scores-mean-using-selectkbest-feature)
 3. [Feature Selection at scikit-learn](http://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection)
+4. [How to tune alrorithm parameters](https://machinelearningmastery.com/how-to-tune-algorithm-parameters-with-scikit-learn/)
+
 4. [Find out the features by SelectKBest](https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118)
 5. [How to use pipeline for scaling](https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178)
 6. [Pipeline at scikit-learn](http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html)
