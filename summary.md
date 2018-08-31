@@ -123,9 +123,9 @@ using 21 features. The result is formatted in the table below.
 
 |   |Decision Tree|Logistic Regression|
 |---|---|---|
-|Accuracy|0.81|0.78|
-|Precision|0.29|0.17|
-|Recall|0.27|0.17|
+|Accuracy|0.82|0.79|
+|Precision|0.34|0.21|
+|Recall|0.33|0.19|
 
 Since the label is a binary variable, intuitively I would assume logistic
 regressions shall give a better performance even without tuning the parameters.
