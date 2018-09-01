@@ -211,17 +211,17 @@ the new feature `fraction_to_poi` is included in this selection.
 Now, we begin to optimize and tune the parameters for the decision tree,
 including:
 
-1. criterion: gini or entropy   
+1. `criterion`: gini or entropy   
 (The function to measure the quality of a split. “gini” for the Gini impurity
   and “entropy” for the information gain.)
-2. maximum depth: none, 2, 5, or 10  
+2. `maximum depth`: none, 2, 5, or 10  
 (The maximum depth of the tree. If none, then nodes are expanded until all
   leaves are pure or until all leaves contain less than min_samples_split samples. Default=none)
-3. maximum leaf nodes: none, 5, 10, or 20  
+3. `maximum leaf nodes`: none, 5, 10, or 20  
 (If none then unlimited number of leaf nodes.)
-4. minimum samples leaf: 1, 5, 10  
+4. `minimum samples leaf`: 1, 5, 10  
 (The minimum number of samples required to be at a leaf node. Default=1)
-5. minimum samples split: 2, 10, 20  
+5. `minimum samples split`: 2, 10, 20  
 (The minimum number of samples required to split an internal node. Default=2)
 
 A further optimization on the parameters of the decision tree results in the
