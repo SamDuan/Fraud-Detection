@@ -7,8 +7,6 @@ from feature_format import featureFormat, targetFeatureSplit
 from tester import dump_classifier_and_data, test_classifier
 from sklearn.feature_selection import SelectKBest, f_classif
 from sklearn.model_selection import GridSearchCV, train_test_split, StratifiedShuffleSplit
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.metrics import accuracy_score
 from sklearn import tree
 from sklearn.pipeline import Pipeline
 
@@ -98,10 +96,15 @@ plt.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
 plt.show()
 
 # Use a list comprehension to find outliers
-key_list_2 = [k for k in data_dict.keys() if data_dict[k]["salary"] != 'NaN' \
+key_list_2 = [k for k in data_dict.keys() if data_dict[k]["poi"] == False \
+              and data_dict[k]["salary"] != 'NaN' \
               and data_dict[k]["bonus"] != 'NaN' \
               and (data_dict[k]["salary"] > 1e6 \
               or data_dict[k]["bonus"] > 5e6)]
+
+# The removal of outliers, key_list_2
+data_dict.pop("LAVORATO JOHN J", 0)
+data_dict.pop("FREVERT MARK A", 0)    
 
 #####################################
 ### Step 3: Create new feature(s) ###
@@ -138,32 +141,31 @@ for name in data_dict:
 
 plt.xlabel("Percentage of emails from POIs to this person (%)")
 plt.ylabel("Percentage of emails from this person to POIs (%)")
-plt.axvline(x = 0.15)
-plt.axhline(y = 0.80)
 plt.show()
 
 # Update features_list with 2 new features. Now 21 features included.
 features_list.append('fraction_from_poi')
 features_list.append('fraction_to_poi')
 
+# 
+key_list_3 = [k for k in data_dict.keys() if data_dict[k]["poi"] == False \
+              and (data_dict[k]["fraction_from_poi"] > 0.15 \
+              or data_dict[k]["fraction_to_poi"] > 0.8)]
+
 # Data preparation for feature selection by SelectKBest
 mydata = featureFormat(data_dict, features_list, sort_keys = True)
 labels, features = targetFeatureSplit(mydata)
 features = map(abs, features)
 
-# Normalize/Scale the features
-scaler = MinMaxScaler()
-features_n = scaler.fit_transform(features)
-
 # Calculate and plot the score (F-value) for each feature
-kb = SelectKBest(f_classif, k='all').fit(features_n, labels)
+kb = SelectKBest(f_classif, k='all').fit(features, labels)
 scores = kb.scores_[kb.get_support()]
 
 dfn = pd.DataFrame(data=features_list[1:])
 dfn[1] = scores
 dfn.columns=['Features','Scores']
 dfn = dfn.sort_values(by=['Scores'])
-dfn.set_index('Features').plot(kind='barh')
+dfn.set_index('Features').plot(grid = 'TRUE', kind='barh')
 
 ###################################################
 ### Step 4: Set up the classifiers and pipeline ###
@@ -180,9 +182,7 @@ features_train, features_test, labels_train, labels_test = train_test_split(
 # setting as a reference point
 dtree = tree.DecisionTreeClassifier()
 dtree.fit(features_train, labels_train)
-pred = dtree.predict(features_test)
-print 'Accracy Score (a prelim run - tree):', accuracy_score(labels_test, pred)
-print 'Run tester and the result is:'
+print 'A prelim run - tree and the result is:'
 test_classifier(dtree, data_dict, features_list, folds = 1000)
 
 # A prelim run using logistic regression without any optimization,
@@ -190,40 +190,33 @@ test_classifier(dtree, data_dict, features_list, folds = 1000)
 from sklearn.linear_model import LogisticRegression
 lr = LogisticRegression()
 lr.fit(features_train, labels_train)
-lr_pred = lr.predict(features_test)
-print 'Accracy Score (a prelim run - lr):', accuracy_score(labels_test, pred)
-print 'Run tester and the result is:'
+print 'A prelim run - lr and the result is:'
 test_classifier(lr, data_dict, features_list, folds = 1000)
 
 
 # Set up a pipeline to find out the optimal number of features to include
-scaler = MinMaxScaler()
 skb = SelectKBest()
 dtree = tree.DecisionTreeClassifier()
-gs =  Pipeline(steps=[('scaling', scaler), ("SKB", skb), ("dt", dtree)])
+pipe =  Pipeline(steps=[("SKB", skb), ("dt", dtree)])
 param_grid = {  # Rules for naming variables:
                 # the quoted name in pipeline + 2 underscores + the parameter:
                 "SKB__k": range(1, len(features_list)-1),
               }
 sss = StratifiedShuffleSplit(random_state=0)
-dtclf = GridSearchCV(gs, param_grid, scoring = 'f1', cv = sss)
+dtclf = GridSearchCV(pipe, param_grid, scoring = 'f1', cv = sss)
 
 #####################################################
 ### Step 5: Fit, tune and evaluate the classifier ###
 #####################################################
-dtclf.fit(features_train, labels_train)
+dtclf.fit(features, labels)
 clf = dtclf.best_estimator_
-clf.fit(features_train, labels_train)
-pred = clf.predict(features_test)
-
-print 'Accracy Score (optimal # of features):', 
-accuracy_score(labels_test, pred)
+clf.fit(features, labels)
 
 features_selected_bool = dtclf.best_estimator_.named_steps['SKB'].get_support()
 features_selected_list = np.array(features_list[1:])[features_selected_bool]
 
 # note that features_list need to be updated before use below
-print 'Run tester and the result is:'
+print 'Optimal # of features and the result is:'
 result = test_classifier(clf, 
                          data_dict, 
                          np.insert(features_selected_list, 0, 'poi'), 
@@ -234,15 +227,14 @@ result = test_classifier(clf,
 barWidth = 0.25
  
 # set height of bar
-bars1 = [0.81453, 0.82029]
-bars2 = [0.29268, 0.37691]
-bars3 = [0.27600, 0.39500]
- 
+bars1 = [0.82713, 0.85667]
+bars2 = [0.34533, 0.46265]
+bars3 = [0.33100, 0.46450]
+
 # Set position of bar on X axis
 r1 = np.arange(len(bars1))
 r2 = [x + barWidth for x in r1]
 r3 = [x + barWidth for x in r2]
-
 
 # Make the plot
 plt.bar(r1, 
@@ -267,7 +259,7 @@ plt.bar(r3,
 # Add xticks on the middle of the group bars
 plt.xlabel('Progression of optimization')
 plt.xticks([r + barWidth for r in range(len(bars1))], 
-            ['21 features', '6 features'])
+            ['21 features', '10 features'])
 plt.ylabel('A.U.')
 plt.ylim(0, 1)
 plt.axhline(y = 0.3)
@@ -277,11 +269,9 @@ plt.legend()
 plt.show()
 
 # More parameters tuning on the decision tree
-
-scaler = MinMaxScaler()
-skb = SelectKBest(k=6)
+skb = SelectKBest(k=10)
 dtree = tree.DecisionTreeClassifier()
-gs =  Pipeline(steps=[('scaling', scaler),("SKB", skb), ("dt", dtree)])
+pipe =  Pipeline(steps=[("SKB", skb), ("dt", dtree)])
 param_grid = {  # Rules for naming variables:
                 # the quoted name in pipeline + 2 underscores + the parameter:
                 "dt__criterion": ["gini", "entropy"],
@@ -289,24 +279,22 @@ param_grid = {  # Rules for naming variables:
                 "dt__max_depth": [None, 2, 5, 10],
                 "dt__min_samples_leaf": [1, 5, 10],
                 "dt__max_leaf_nodes": [None, 5, 10, 20],
-              }
-sss = StratifiedShuffleSplit()
-dtcclf = GridSearchCV(gs, param_grid, scoring = 'f1', cv = sss)
+                }
 
-dtcclf.fit(features_train, labels_train)
+sss = StratifiedShuffleSplit(random_state=0)
+dtcclf = GridSearchCV(pipe, param_grid, scoring = 'f1', cv = sss)
+
+dtcclf.fit(features, labels)
 
 # the optimal model returned by 'GridSearchCV'
 clf = dtcclf.best_estimator_
-clf.fit(features_train,labels_train)
-pred = clf.predict(features_test)
-
-print 'Accracy Score (tree optimization):', accuracy_score(labels_test, pred)
+clf.fit(features, labels)
 
 features_selected_bool = dtcclf.best_estimator_.named_steps['SKB'].get_support()
 features_selected_list = np.array(features_list[1:])[features_selected_bool]
 
 # features_list need to be updated before use below!
-print 'Run tester and the result is:'
+print 'tree optimization and the result is:'
 result = test_classifier(clf, 
                          data_dict, 
                          np.insert(features_selected_list, 0, 'poi'), 
@@ -317,10 +305,11 @@ result = test_classifier(clf,
 barWidth = 0.25
  
 # set height of bar
-bars1 = [0.81453, 0.82029, 0.84693]
-bars2 = [0.29268, 0.37691, 0.46544]
-bars3 = [0.27600, 0.39500, 0.48150]
- 
+bars1 = [0.82713, 0.85667, 0.86893]
+bars2 = [0.34533, 0.46265, 0.50912]
+bars3 = [0.33100, 0.46450, 0.47450]
+
+
 # Set position of bar on X axis
 r1 = np.arange(len(bars1))
 r2 = [x + barWidth for x in r1]
@@ -378,7 +367,7 @@ for edge in edges:
         dest = graph.get_node(str(edges[edge][i]))[0]
         dest.set_fillcolor(colors[i])
 
-graph.write_png('poi_tree3.png')
+graph.write_png('poi_tree.png')
 
 # The optimal parameters for the decision tree
 dtcclf.best_params_
