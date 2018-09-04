@@ -309,7 +309,7 @@ included to evaluate the models during the progression of optimization.
 
 Lastly, here is the optimal result that I got in this study:
 
-|   |Decision Tree   |
+|   |Decision Tree|
 |---|---|
 | Accuracy  |0.86|
 | Precision  |0.51|
@@ -322,6 +322,12 @@ This machine learning project has a quite steep learning curve but overall it is
 setting up the pipeline, model optimization, model validation and performance
 evaluation. After many struggles, it is quite excited to see when all of these
 pieces eventually work together.
+
+<!---
+Future works:
+1. Data leakage - remove the features related to poi to reduce the data leakage
+2. Better scanning the outliers - go through all the features
+--->
 
 ## References
 1. [What is Financial Fraud?](http://www.bnm.gov.my/microsites/fraudalert/01_what.htm)
