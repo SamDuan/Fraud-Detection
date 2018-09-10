@@ -315,10 +315,10 @@ Lastly, here is the optimal result that I got in this study:
 | Precision  |0.51|
 | Recall  |0.47|
 
-A precision of 51% (0.51) means that 51% of people labeled as POIs by this model
+*A precision of 51% (0.51) means that 51% of people labeled as POIs by this model
 are actually POIs, while a recall of 47% (0.47) means 47% of POIs in the dataset
 are found by this model. In other words, roughly half of people labeled as POIs
-are not actually POIs, and half of POIs in the dataset are not identified. 
+are not actually POIs, and half of POIs in the dataset are not identified.*
 
 ## Reflection
 This machine learning project has a quite steep learning curve but overall it is
