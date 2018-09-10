@@ -175,18 +175,25 @@ For each round of validation, F1 score (the harmonic average of the precision an
     the highest average F1 score is then selected as the optimal parameters for
     the model.
 
+Note that F1 score is chosen to validate the performance instead of ROC/AUC due
+to the imbalanced data. Since the number of POIs (positive) is roughly ten times
+ less than that of non-POIs (negative), ROC/AUC would not be so sensitive false
+ positive. False Positive Rate ( = False Positives / Total Real Negatives ) in
+ a ROC curve would not drop drastically when the Total Real Negatives is huge.
+ [8]
+
 In addition to GridCVSearch, Pipeline is employed to expedite the parameters
-optimization [8, 9]. Pipleline is not an algorithm but a tool encapsulating
+optimization [9, 10]. Pipleline is not an algorithm but a tool encapsulating
 multiple different transformers alongside an estimator into one object that can
 be cross-validated together while setting different parameters.
 
-The first parameter to tune is the optimal number of features.[10]
+The first parameter to tune is the optimal number of features.[11]
 
 Given the classifier is the decision tree with all the default setting, the
 optimal number of features is found to be 10, when no optimization of the
 decision tree is employed. Accuracy, Precision and Recall all show improvement
 with the number of features is reduced from 21 to 10, shown in the bar chart
-below [11]:
+below [12]:
 
 <p align="center">
   <img src="summary_files/score_number_of_features_optim.png" alt="score_number_of_features_optim.png"/>
@@ -238,7 +245,7 @@ chart.
   <img src="summary_files/score_tree_optim.png" alt="score_tree_optim.png"/>
 </p>
 
-And the corresponding decision tree looks like this [12]:
+And the corresponding decision tree looks like this [13]:
 
 <p align="center">
   <img src="summary_files/poi_tree.png" alt="tree"/>
@@ -284,7 +291,7 @@ Since this project deals with an this is an *imbalanced classification* (POIs
   and non-POIs classes exhibit a large imbalance in the distribution.) It is
   advantageous to use stratified sampling as implemented in
   StratifiedShuffleSplit to ensure that relative class frequencies is
-  approximately preserved in each train and validation fold. [13]
+  approximately preserved in each train and validation fold. [14]
 
 To evaluate the performance of the model, accuracy, precision and recall are
 used.
@@ -298,7 +305,7 @@ can achieve 87% accuracy (128/146). However, it is not a very useful model,
 because it will never tell me when a person will commit financial crime, which
 is what we really are interested in. Two additional metrics are therefore
 introduced, which are precision and recall. Their definitions are as follows:
-[14]
+[15]
 
 ● __Precision__ = *true positive / all predicted positive  
 = # of POIs labeled correctly / # of people labeled as POIs*
@@ -348,10 +355,11 @@ Future works:
 5. [How to tune algorithm parameters](https://machinelearningmastery.com/how-to-tune-algorithm-parameters-with-scikit-learn/)
 6. [Cross-validation at Wikipedia](https://en.wikipedia.org/wiki/Cross-validation_(statistics))
 7. [GridSearchCV, testing and training split](https://discussions.udacity.com/t/gridsearchcv-and-testingtraining-data/36107)
-8. [How to use pipeline for scaling](https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178)
-9. [Pipeline at stackoverflow](https://stackoverflow.com/questions/33091376/python-what-is-exactly-sklearn-pipeline-pipeline)
-10. [Find out the features by SelectKBest](https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118)
-11. [Grouped barplot](https://python-graph-gallery.com/11-grouped-barplot/)
-12. [Plot decision tree](https://stackoverflow.com/questions/42891148/changing-colors-for-decision-tree-plot-created-using-export-graphviz)
-13. [Cross-Validation at scikit-learn](http://scikit-learn.org/stable/modules/cross_validation.html)
-14. [Beyond accuracy](https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c)
+8. [F1 vs ROC in imbalanced data](https://www.kaggle.com/lct14558/imbalanced-data-why-you-should-not-use-roc-curve)
+9. [How to use pipeline for scaling](https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178)
+10. [Pipeline at stackoverflow](https://stackoverflow.com/questions/33091376/python-what-is-exactly-sklearn-pipeline-pipeline)
+11. [Find out the features by SelectKBest](https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118)
+12. [Grouped barplot](https://python-graph-gallery.com/11-grouped-barplot/)
+13. [Plot decision tree](https://stackoverflow.com/questions/42891148/changing-colors-for-decision-tree-plot-created-using-export-graphviz)
+14. [Cross-Validation at scikit-learn](http://scikit-learn.org/stable/modules/cross_validation.html)
+15. [Beyond accuracy](https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c)
