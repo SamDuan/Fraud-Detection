@@ -119,7 +119,8 @@ Few observations:
 
 ## Algorithms
 Decision Tree and Logistic Regression are set as classifier to build the model
-using 21 features. The result is formatted in the table below.
+using 21 features. Logistic Regression models the probability that each person
+ belongs to a POI category. The result is formatted in the table below.
 
 |   |Decision Tree|Logistic Regression|
 |---|---|---|
@@ -146,41 +147,46 @@ and  evaluate a model for each combination of algorithm parameters specified in
 a grid.  
 
 In scikit-learn, GridCVSearch is available for this purpose. As indicated by its
- name, it is comprised of grid search and cross-validation. First of all, I
- determine a set of parameter values which are stored on a grid and each set
- would be used to train the model.
+ name, GridCVSearch is comprised of grid search and cross-validation.
+ First of all, I determine a set of parameter values which are stored on a grid
+ and each set would be used to train the model.
 
-Cross-validation is to reserve part of data to evaluate the model. Here
-StratifiedShuffleSplit is cross-validator, meaning samples are first shuffled
-and then split into a pair of train and validation sets. Note that here is
-validation set rather than testing set, since the testing set is for the
-performance evaluation after parameters optimization (see the figure below) [6].
-This will be discussed in more details in Model Validation and Performance.
+Cross-validation involves [6]:
+(1) partitioning the dataset into two subsets
+(2) training the model with the training dataset
+(3) validating the model with the validating dataset
+Here StratifiedShuffleSplit is the cross-validator, meaning samples are first
+shuffled and then split into a pair of train and validation sets based on
+stratified sampling. Note that here  is validation set rather than testing set,
+since the testing set is for the performance evaluation after parameters
+optimization (see the figure below) [7]. This will be discussed in more details
+in Model Validation and Performance.
 
 <p align="center">
   <img src="summary_files/cross-val.png" alt="cross-val"/>
 </p>
 
-For each validation, F1 score (the harmonic average of the precision and recall)
-is employed to evaluate the performance of a given parameters values described
-in a grid using the validation dataset, and the averages of all the F1
-scores represents the performance of this set of parameters. Then another set of
-parameters is fed into the classifier and cross-validation determines its
-performance. The set of parameters giving the highest F1 score is then selected
-as the optimal parameters for the model.
+For each round of validation, F1 score (the harmonic average of the precision and
+   recall) is employed to evaluate the performance for a given parameters values
+    using the validation dataset, and the F1 scores over the rounds are averaged
+    to give an estimate of the model performance, given this particular set of
+    parameters. Then another set of parameters is fed into the classifier and
+    cross-validation to determine its performance. The set of parameters giving
+    the highest average F1 score is then selected as the optimal parameters for
+    the model.
 
 In addition to GridCVSearch, Pipeline is employed to expedite the parameters
-optimization [7, 8]. Pipleline is not an algorithm but a tool encapsulating
+optimization [8, 9]. Pipleline is not an algorithm but a tool encapsulating
 multiple different transformers alongside an estimator into one object that can
 be cross-validated together while setting different parameters.
 
-The first parameter to tune is the optimal number of features.[9]
+The first parameter to tune is the optimal number of features.[10]
 
 Given the classifier is the decision tree with all the default setting, the
 optimal number of features is found to be 10, when no optimization of the
 decision tree is employed. Accuracy, Precision and Recall all show improvement
 with the number of features is reduced from 21 to 10, shown in the bar chart
-below [10]:
+below [11]:
 
 <p align="center">
   <img src="summary_files/score_number_of_features_optim.png" alt="score_number_of_features_optim.png"/>
@@ -232,7 +238,7 @@ chart.
   <img src="summary_files/score_tree_optim.png" alt="score_tree_optim.png"/>
 </p>
 
-And the corresponding decision tree looks like this [11]:
+And the corresponding decision tree looks like this [12]:
 
 <p align="center">
   <img src="summary_files/poi_tree.png" alt="tree"/>
@@ -278,7 +284,7 @@ Since this project deals with an this is an *imbalanced classification* (POIs
   and non-POIs classes exhibit a large imbalance in the distribution.) It is
   advantageous to use stratified sampling as implemented in
   StratifiedShuffleSplit to ensure that relative class frequencies is
-  approximately preserved in each train and validation fold. [12]
+  approximately preserved in each train and validation fold. [13]
 
 To evaluate the performance of the model, accuracy, precision and recall are
 used.
@@ -292,7 +298,7 @@ can achieve 87% accuracy (128/146). However, it is not a very useful model,
 because it will never tell me when a person will commit financial crime, which
 is what we really are interested in. Two additional metrics are therefore
 introduced, which are precision and recall. Their definitions are as follows:
-[13]
+[14]
 
 ● __Precision__ = *true positive / all predicted positive  
 = # of POIs labeled correctly / # of people labeled as POIs*
@@ -340,11 +346,12 @@ Future works:
 3. [What do these f scores mean?](https://stackoverflow.com/questions/49214001/what-do-these-f-scores-mean-using-selectkbest-feature)
 4. [Feature Selection at scikit-learn](http://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection)
 5. [How to tune algorithm parameters](https://machinelearningmastery.com/how-to-tune-algorithm-parameters-with-scikit-learn/)
-6. [GridSearchCV, testing and training split](https://discussions.udacity.com/t/gridsearchcv-and-testingtraining-data/36107)
-7. [How to use pipeline for scaling](https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178)
-8. [Pipeline at stackoverflow](https://stackoverflow.com/questions/33091376/python-what-is-exactly-sklearn-pipeline-pipeline)
-9. [Find out the features by SelectKBest](https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118)
-10. [Grouped barplot](https://python-graph-gallery.com/11-grouped-barplot/)
-11. [Plot decision tree](https://stackoverflow.com/questions/42891148/changing-colors-for-decision-tree-plot-created-using-export-graphviz)
-12. [Cross-Validation at scikit-learn](http://scikit-learn.org/stable/modules/cross_validation.html)
-13. [Beyond accuracy](https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c)
+6. [Cross-validation at Wikipedia](https://en.wikipedia.org/wiki/Cross-validation_(statistics))
+7. [GridSearchCV, testing and training split](https://discussions.udacity.com/t/gridsearchcv-and-testingtraining-data/36107)
+8. [How to use pipeline for scaling](https://discussions.udacity.com/t/how-to-use-pipeline-for-feature-scalling/164178)
+9. [Pipeline at stackoverflow](https://stackoverflow.com/questions/33091376/python-what-is-exactly-sklearn-pipeline-pipeline)
+10. [Find out the features by SelectKBest](https://discussions.udacity.com/t/how-to-find-out-the-features-selected-by-selectkbest/45118)
+11. [Grouped barplot](https://python-graph-gallery.com/11-grouped-barplot/)
+12. [Plot decision tree](https://stackoverflow.com/questions/42891148/changing-colors-for-decision-tree-plot-created-using-export-graphviz)
+13. [Cross-Validation at scikit-learn](http://scikit-learn.org/stable/modules/cross_validation.html)
+14. [Beyond accuracy](https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c)
